@@ -124,7 +124,7 @@ const App: React.FC = () => {
                  {MANIFESTO_TEXT.map((paragraph, i) => (
                    <p key={i}>
                      <span className="text-term-cyan/50 mr-2">{`[LOG_${i}]:`}</span>
-                     <span className="text-term-cyan mr-2">>></span>
+                     <span className="text-term-cyan mr-2">{">>"}</span>
                      {paragraph}
                    </p>
                  ))}
