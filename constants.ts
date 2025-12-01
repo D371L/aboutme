@@ -56,7 +56,7 @@ export const CERTIFICATIONS: Certification[] = [
   {
     title: 'Bachelor of Science in CS',
     issuer: 'UoPeople',
-    date: 'Ongoing',
+    date: 'Jan 2026',
     description: 'A long path through code, theory, and relentless self-perfection.',
     icon: 'book'
   },
