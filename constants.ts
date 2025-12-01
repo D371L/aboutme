@@ -24,7 +24,7 @@ export const PROJECTS: Project[] = [
     description: 'The Eternal Forge. "Exure vivos donec sol taceat". A dark, gamified productivity ecosystem (PWA) that transforms daily tasks into Chains, expenses into Sacrifices, and habits into Rituals.',
     techStack: ['React 19', 'Node.js', 'PostgreSQL', 'PWA'],
     link: 'https://beliarg.online/',
-    imageUrl: 'https://aistudio.google.com/939db143-c819-41b5-883e-c64c3e1fc43b',
+    imageUrl: '/assets/beliarg_screen.jpg',
   },
   {
     id: '2',
