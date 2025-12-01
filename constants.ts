@@ -28,11 +28,11 @@ export const PROJECTS: Project[] = [
   },
   {
     id: '2',
-    title: 'VOID_GATEWAY',
-    description: 'High-performance API infrastructure built for silence and speed. Secure endpoints fortified against intrusion.',
-    techStack: ['Svelte', 'Bun', 'AppSec', 'Cloud'],
-    link: '#',
-    imageUrl: 'https://picsum.photos/601/400?grayscale',
+    title: 'ASMODEUS',
+    description: 'Neon wheel of fortune for giveaways and interactive picks. Saves state, plays synthy sounds, has demo auto-spin mode, and ships as a PWA.',
+    techStack: ['React 18', 'TypeScript', 'Vite 5', 'Tailwind CSS 3', 'D3', 'Web Audio API', 'PWA'],
+    link: 'https://d371l.github.io/asmodeus/',
+    imageUrl: '/aboutme/assets/asmodeus_screen.jpg',
   },
   {
     id: '3',
