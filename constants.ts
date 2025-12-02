@@ -79,7 +79,7 @@ export const CERTIFICATIONS: Certification[] = [
 export const TECH_STACK: TechCategory[] = [
   {
     name: 'Languages',
-    skills: ['Python', 'Java', 'PHP', 'JavaScript', 'Svelte', 'Bun', 'HTML5', 'CSS3']
+    skills: ['Python', 'Java', 'PHP', 'JavaScript', 'Svelte', 'Bun', 'HTML5', 'CSS3', 'Go', 'Dart']
   },
   {
     name: 'Tools',
