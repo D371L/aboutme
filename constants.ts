@@ -36,11 +36,11 @@ export const PROJECTS: Project[] = [
   },
   {
     id: '3',
-    title: 'CHAOS_AUTOMATON',
-    description: 'Infrastructure as Code orchestration. Deploys self-healing systems across multi-cloud environments.',
-    techStack: ['Ansible', 'AWS', 'Google Cloud', 'Terraform'],
-    link: '#',
-    imageUrl: 'https://picsum.photos/602/400?grayscale',
+    title: 'ZUZIM_CASH',
+    description: 'Современная платформа цифровых кошельков с многоуровневой системой управления финансами. Объединяет администраторов, филиалы и пользователей в единую экосистему с полным контролем и прозрачностью операций.',
+    techStack: ['SvelteKit', 'TypeScript', 'Go', 'Gin Framework', 'PostgreSQL', 'JWT', 'GORM', 'Tailwind CSS', 'Docker', 'DigitalOcean'],
+    link: 'https://zuzim.cash/',
+    imageUrl: 'aboutme/assets/zuzim_cash.jpg',
   },
   {
     id: '4',
