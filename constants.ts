@@ -23,7 +23,7 @@ export const PROJECTS: Project[] = [
     title: 'BELIARG',
     description: 'The Eternal Forge. "Exure vivos donec sol taceat". A dark, gamified productivity ecosystem (PWA) that transforms daily tasks into Chains, expenses into Sacrifices, and habits into Rituals.',
     techStack: ['React 19', 'Node.js', 'PostgreSQL', 'PWA'],
-    link: 'https://beliarg.online/',
+    link: 'https://d371l.github.io/beliarg/',
     imageUrl: '/aboutme/assets/beliarg_screen.jpg',
   },
   {
@@ -37,10 +37,10 @@ export const PROJECTS: Project[] = [
   {
     id: '3',
     title: 'ZUZIM_CASH',
-    description: 'Современная платформа цифровых кошельков с многоуровневой системой управления финансами. Объединяет администраторов, филиалы и пользователей в единую экосистему с полным контролем и прозрачностью операций.',
+    description: 'Modern digital wallet platform with multi-level financial management system. Unites administrators, branches, and users in a unified ecosystem with full control and transaction transparency.',
     techStack: ['SvelteKit', 'TypeScript', 'Go', 'Gin Framework', 'PostgreSQL', 'JWT', 'GORM', 'Tailwind CSS', 'Docker', 'DigitalOcean'],
     link: 'https://zuzim.cash/',
-    imageUrl: 'aboutme/assets/zuzim_cash.jpg',
+    imageUrl: '/aboutme/assets/zuzim_cash.jpg',
   },
   {
     id: '4',
