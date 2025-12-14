@@ -70,6 +70,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
            <div className="flex justify-end">
              <a 
                href={project.link}
+               target={project.link !== '#' ? "_blank" : undefined}
+               rel={project.link !== '#' ? "noopener noreferrer" : undefined}
                className={`flex items-center gap-2 ${theme.bg} text-black px-6 py-2 hover:bg-white hover:text-black font-bold tracking-widest transition-all hover:scale-105`}
              >
                <Binary size={16} />
