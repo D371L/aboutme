@@ -20,6 +20,14 @@ export const SCRIPTURES_TEXT = "Marks I earned through fire, silence, and persis
 export const PROJECTS: Project[] = [
   {
     id: '1',
+    title: 'ORLY_SITBON',
+    description: 'Orly Sitbon Patisserie — elegant business website for a French-style bakery in Nahariya. Showcases pastries, desserts, brunches, and catering platters with responsive design and local SEO.',
+    techStack: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design', 'SEO'],
+    link: 'https://orlysitbon.co.il/',
+    imageUrl: '/aboutme/assets/orlysitbon_screen.png',
+  },
+  {
+    id: '2',
     title: 'HAZMAG',
     description: 'Guardians of Balance. OSINT research and reporting platform for a non-governmental organization investigating hostile actors and threats to public safety. Web and mobile application.',
     techStack: ['Flutter', 'Dart', 'OSINT', 'Mobile App'],
@@ -27,7 +35,7 @@ export const PROJECTS: Project[] = [
     imageUrl: 'https://picsum.photos/604/400?grayscale',
   },
   {
-    id: '2',
+    id: '3',
     title: 'ZUZIM_CASH',
     description: 'Modern digital wallet platform with multi-level financial management system. Unites administrators, branches, and users in a unified ecosystem with full control and transaction transparency.',
     techStack: ['SvelteKit', 'TypeScript', 'Go', 'Gin Framework', 'PostgreSQL', 'JWT', 'GORM', 'Tailwind CSS', 'Docker', 'DigitalOcean'],
@@ -35,7 +43,7 @@ export const PROJECTS: Project[] = [
     imageUrl: '/aboutme/assets/zuzim_cash.jpg',
   },
   {
-    id: '3',
+    id: '4',
     title: 'ASMODEUS',
     description: 'Neon wheel of fortune for giveaways and interactive picks. Saves state, plays synthy sounds, has demo auto-spin mode, and ships as a PWA.',
     techStack: ['React 18', 'TypeScript', 'Vite 5', 'Tailwind CSS 3', 'D3', 'Web Audio API', 'PWA'],
@@ -43,7 +51,7 @@ export const PROJECTS: Project[] = [
     imageUrl: '/aboutme/assets/asmodeus_screen.jpg',
   },
   {
-    id: '4',
+    id: '5',
     title: 'BELIARG',
     description: 'The Eternal Forge. "Exure vivos donec sol taceat". A dark, gamified productivity ecosystem (PWA) that transforms daily tasks into Chains, expenses into Sacrifices, and habits into Rituals.',
     techStack: ['React 19', 'Node.js', 'PostgreSQL', 'PWA'],
