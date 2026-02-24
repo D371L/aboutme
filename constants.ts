@@ -54,9 +54,9 @@ export const PROJECTS: Project[] = [
 
 export const CERTIFICATIONS: Certification[] = [
   {
-    title: 'Bachelor of Science in CS',
+    title: 'Bachelor of Science in Computer Science',
     issuer: 'UoPeople',
-    date: 'Jan 2026',
+    date: 'Jan 5, 2026',
     description: 'A long path through code, theory, and relentless self-perfection.',
     icon: 'book'
   },
