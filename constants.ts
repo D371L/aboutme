@@ -32,7 +32,7 @@ export const PROJECTS: Project[] = [
     description: 'Guardians of Balance. OSINT research and reporting platform for a non-governmental organization investigating hostile actors and threats to public safety. Web and mobile application.',
     techStack: ['Flutter', 'Dart', 'OSINT', 'Mobile App'],
     link: 'https://hazmag.org/',
-    imageUrl: 'https://picsum.photos/604/400?grayscale',
+    imageUrl: '/aboutme/assets/hazmag_screen.webp',
   },
   {
     id: '3',
