@@ -44,11 +44,11 @@ export const PROJECTS: Project[] = [
   },
   {
     id: '4',
-    title: 'SHIELD_PROTOCOL',
-    description: 'Network defense system analyzing traffic patterns for anomalies using custom intrusion detection rules.',
-    techStack: ['Java', 'SQL', 'SIEM', 'IDS'],
-    link: '#',
-    imageUrl: 'https://picsum.photos/603/400?grayscale',
+    title: 'HAZMAG',
+    description: 'Guardians of Balance. OSINT research and reporting platform for a non-governmental organization investigating hostile actors and threats to public safety. Web and mobile application.',
+    techStack: ['Flutter', 'Dart', 'OSINT', 'Mobile App'],
+    link: 'https://hazmag.org/',
+    imageUrl: 'https://picsum.photos/604/400?grayscale',
   }
 ];
 
