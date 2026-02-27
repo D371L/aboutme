@@ -32,3 +32,14 @@ body {
 
 scrollbar-color: #333 #050505;
 scrollbar-width: thin;
+
+.page-section {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.page-section.active {
+  opacity: 1;
+  transform: translateY(0);
+}

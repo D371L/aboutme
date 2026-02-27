@@ -100,7 +100,13 @@
       var id = page.id.replace('page-', '');
       if (id === current) {
         page.classList.remove('hidden');
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            page.classList.add('active');
+          });
+        });
       } else {
+        page.classList.remove('active');
         page.classList.add('hidden');
       }
     });
