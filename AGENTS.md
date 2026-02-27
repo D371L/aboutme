@@ -2,19 +2,19 @@
 
 ## Cursor Cloud specific instructions
 
-This is a **frontend-only** React/TypeScript portfolio site built with Vite. There is no backend, database, or external service required.
+This is a **frontend-only** static portfolio site built with pure HTML, CSS, and JavaScript. No build tools, no frameworks, no dependencies.
 
 ### Running the app
 
-- `npm run dev` starts the Vite dev server on port **3000** (bound to `0.0.0.0`).
-- The app is served under the base path `/aboutme/`, so the local URL is `http://localhost:3000/aboutme/`.
-- `npm run build` produces a production build in `dist/`.
+- Serve with any static HTTP server, e.g. `python3 -m http.server 3000`
+- The local URL is `http://localhost:3000/`
+- Uses hash-based routing: `#/`, `#/experience`, `#/scriptures`, `#/techstack`
 
 ### Key caveats
 
-- **No lockfile**: The repo has no `package-lock.json`. Running `npm install` will resolve latest semver-compatible versions each time.
-- **No test suite**: There is no `test` script in `package.json`. Validation is done via `npx tsc --noEmit` (type-check) and `npm run build` (production build).
-- **No linter configured**: There is no ESLint or Prettier config. Use `npx tsc --noEmit` for static analysis.
-- **Tailwind via CDN**: Tailwind CSS is loaded from `cdn.tailwindcss.com` in `index.html`, not as an npm dependency. Builds require network access for the initial page load in a browser.
-- **Gemini AI feature is disabled**: `DemonChat.tsx` returns `null` and `geminiService.ts` returns `"AI_DISABLED"`. No `GEMINI_API_KEY` is needed for normal development.
-- **GitHub Pages base path**: The `BrowserRouter` uses `basename="/aboutme"` and `vite.config.ts` sets `base: '/aboutme/'`. All routes are under this prefix.
+- **No build step**: The site is pure static files — `index.html`, `style.css`, `main.js`, and `assets/` images.
+- **No dependencies**: No `package.json`, no `node_modules`, no npm/yarn/pnpm.
+- **No test suite**: Validation is visual — serve the site and check in a browser.
+- **Tailwind via CDN**: Tailwind CSS is loaded from `cdn.tailwindcss.com` in `index.html`.
+- **GitHub Pages deploy**: The workflow at `.github/workflows/deploy.yml` uploads the repo root directly (no build).
+- **Hash routing**: Navigation uses `#/path` format. The `main.js` file handles showing/hiding page sections based on the hash.
