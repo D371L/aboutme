@@ -1,1032 +1,468 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>D371L // SYSTEM_ROOT</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              'hell-black': '#050505',
-              'hell-dark': '#0a0a0f',
-              'ember-red': '#ff0033',
-              'ember-dim': '#660011',
-              'ember-orange': '#ffaa00',
-              'ash-grey': '#333344',
-              'term-green': '#00ff41',
-              'term-cyan': '#00f3ff',
-              'term-purple': '#bd00ff',
-              'term-yellow': '#fff700',
-              'term-blue': '#0066ff',
-            },
-            fontFamily: {
-              terminal: ['"VT323"', 'monospace'],
-            },
-            animation: {
-              'blink': 'blink 1s step-end infinite',
-              'glitch': 'glitch 1s linear infinite',
-              'scan': 'scan 8s linear infinite',
-            },
-            keyframes: {
-              blink: {
-                '0%, 100%': { opacity: 1 },
-                '50%': { opacity: 0 },
-              },
-              glitch: {
-                '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
-                '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
-                '62%': { transform: 'translate(0,0) skew(5deg)' },
-              },
-              scan: {
-                '0%': { transform: 'translateY(-100%)' },
-                '100%': { transform: 'translateY(100%)' },
-              }
-            },
-            backgroundImage: {
-              'grid': 'linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px)',
-            }
-          },
-        },
-      };
-    </script>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div class="min-h-screen bg-hell-black text-gray-300 font-terminal relative overflow-hidden selection:bg-term-purple selection:text-white bg-grid bg-[length:40px_40px]">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Vladimir Berson · Full-Spectrum Engineer</title>
+<meta name="description" content="Vladimir Berson. Full-Spectrum Engineer and Founder. AI, Security, Cloud. Threat Intelligence, OSINT, LLM Systems. Haifa, Israel.">
+<meta name="theme-color" content="#0a0a14" id="metaTheme">
+<style>
+  :root{
+    --void:#0a0a14;
+    --panel:#10101f;
+    --panel2:#141426;
+    --line:#26233f;
+    --proton:#6D4AFF;
+    --proton-soft:#B49CFF;
+    --phosphor:#00FF41;
+    --blood:#FF5555;
+    --text:#E8E6F5;
+    --dim:#8B87A8;
+    --name-glow:0 0 24px rgba(0,255,65,.35), 0 0 60px rgba(109,74,255,.25);
+    --glow1:rgba(109,74,255,.16);
+    --glow2:rgba(109,74,255,.10);
+    --scanA:rgba(0,0,0,.22);
+    --card-shadow:0 0 0 1px rgba(109,74,255,.06), 0 12px 40px rgba(0,0,0,.4);
+    --bar-bg:rgba(16,16,31,.92);
+    --mono:ui-monospace,'Cascadia Code','JetBrains Mono',Menlo,Consolas,'Liberation Mono',monospace;
+  }
+  [data-theme="light"]{
+    --void:#F5F3FB;
+    --panel:#FFFFFF;
+    --panel2:#F1EEFA;
+    --line:#DCD5F2;
+    --proton:#6D4AFF;
+    --proton-soft:#5433D6;
+    --phosphor:#0A9B2D;
+    --blood:#D63333;
+    --text:#1C1830;
+    --dim:#5D5878;
+    --name-glow:0 0 18px rgba(10,155,45,.20), 0 0 44px rgba(109,74,255,.14);
+    --glow1:rgba(109,74,255,.10);
+    --glow2:rgba(109,74,255,.06);
+    --scanA:rgba(28,24,48,.045);
+    --card-shadow:0 0 0 1px rgba(109,74,255,.05), 0 10px 30px rgba(60,45,140,.10);
+    --bar-bg:rgba(245,243,251,.92);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--void);
+    color:var(--text);
+    font-family:var(--mono);
+    font-size:15px;
+    line-height:1.7;
+    overflow-x:hidden;
+    transition:background .35s ease,color .35s ease;
+  }
+  ::selection{background:var(--proton);color:#fff}
 
-      <!-- Mobile Hamburger Button -->
-      <button
-        id="menu-toggle"
-        class="lg:hidden fixed top-4 left-4 z-50 p-3 border border-term-green/50 bg-hell-black/95 backdrop-blur-sm text-term-green hover:bg-term-green/10 hover:border-term-green transition-all font-mono text-sm tracking-widest"
-        aria-label="Toggle menu"
-      >
-        <div class="flex items-center gap-2">
-          <span id="menu-icon-open">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-          </span>
-          <span id="menu-icon-close" class="hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-          </span>
-          <span class="hidden sm:inline" id="menu-label">[MENU]</span>
+  .glow{
+    position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(900px 500px at 70% -10%, var(--glow1), transparent 60%),
+      radial-gradient(700px 400px at 10% 110%, var(--glow2), transparent 60%);
+    transition:background .35s ease;
+  }
+  .scan{
+    position:fixed;inset:0;pointer-events:none;z-index:3;opacity:.55;
+    background:repeating-linear-gradient(0deg, var(--scanA) 0 1px, transparent 1px 4px);
+  }
+
+  .wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;
+    padding:0 20px calc(60px + env(safe-area-inset-bottom))}
+
+  /* titlebar */
+  .titlebar{
+    position:sticky;top:0;z-index:5;
+    display:flex;align-items:center;gap:10px;
+    background:var(--bar-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    margin:0 -20px;
+    padding:calc(12px + env(safe-area-inset-top)) 20px 12px;
+    transition:background .35s ease;
+  }
+  .dot{width:11px;height:11px;border-radius:50%;flex:none}
+  .dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
+  .titlebar .path{margin-left:6px;color:var(--dim);font-size:13px;letter-spacing:.02em;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+  .titlebar .path b{color:var(--proton-soft);font-weight:600}
+  .themer{
+    margin-left:auto;flex:none;cursor:pointer;
+    font-family:var(--mono);font-size:12.5px;font-weight:600;
+    color:var(--proton-soft);background:var(--panel2);
+    border:1px solid var(--line);border-radius:6px;
+    padding:7px 12px;min-height:34px;
+    transition:all .2s ease;
+  }
+  .themer:hover{border-color:var(--proton)}
+  .themer:active{transform:scale(.97)}
+
+  /* hero */
+  .hero{padding:80px 0 56px}
+  .prompt{color:var(--proton-soft);font-size:15px;word-break:break-word}
+  .prompt .cmd{color:var(--text)}
+  .name{
+    font-size:clamp(38px,8vw,72px);
+    font-weight:800;letter-spacing:-.02em;line-height:1.05;
+    color:var(--phosphor);
+    text-shadow:var(--name-glow);
+    margin:18px 0 14px;
+  }
+  .rotator{min-height:2.6em;color:var(--proton-soft);font-size:clamp(15px,2.6vw,19px)}
+  .caret{display:inline-block;width:.6em;height:1.05em;background:var(--phosphor);
+    vertical-align:-0.15em;margin-left:3px;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .hero .meta{margin-top:20px;color:var(--dim);font-size:13.5px}
+  .hero .meta span{color:var(--proton-soft)}
+
+  /* sections */
+  section{padding:40px 0 8px}
+  .cmdline{color:var(--dim);font-size:14px;margin-bottom:16px;word-break:break-word}
+  .cmdline .host{color:var(--proton-soft)}
+  .cmdline .typed{color:var(--text)}
+  .out{
+    border:1px solid var(--line);
+    background:linear-gradient(180deg,var(--panel),var(--panel2));
+    border-radius:8px;padding:26px 28px;
+    box-shadow:var(--card-shadow);
+    transition:background .35s ease,border-color .35s ease;
+  }
+
+  .rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .rv.on{opacity:1;transform:none}
+
+  /* neofetch */
+  .fetch{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start}
+  .asciiWrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .ascii{color:var(--proton);font-size:11px;line-height:1.25;white-space:pre;
+    text-shadow:0 0 14px var(--glow1)}
+  .kv{font-size:14px}
+  .kv .row{display:grid;grid-template-columns:118px 1fr;gap:8px;padding:2.5px 0}
+  .kv .k{color:var(--proton-soft)}
+  .kv .v{color:var(--text)}
+  .kv .v.gr{color:var(--phosphor)}
+  .mission{margin-top:22px;padding-top:18px;border-top:1px dashed var(--line);color:var(--dim);font-size:14px}
+  .mission b{color:var(--text);font-weight:600}
+
+  /* record */
+  .rec{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:baseline;
+    padding:13px 4px;border-bottom:1px solid var(--line)}
+  .rec:last-child{border-bottom:none}
+  .rec .yr{color:var(--phosphor);font-size:13px}
+  .rec .t{color:var(--text)}
+  .rec .t small{display:block;color:var(--dim);font-size:12.5px;margin-top:2px}
+  .rec .tag{color:var(--proton-soft);font-size:12px;border:1px solid var(--line);
+    padding:2px 9px;border-radius:99px;white-space:nowrap}
+
+  /* operations */
+  .ops{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .op{border:1px solid var(--line);border-radius:8px;padding:20px;background:var(--panel);
+    transition:border-color .25s ease, transform .25s ease, background .35s ease}
+  .op:hover{border-color:var(--proton);transform:translateY(-2px)}
+  .op h3{font-size:15px;color:var(--proton-soft);font-weight:700;margin-bottom:8px}
+  .op h3 .st{float:right;font-size:11px;color:var(--phosphor);font-weight:600}
+  .op p{color:var(--dim);font-size:13.5px;line-height:1.65}
+  .op p b{color:var(--text);font-weight:600}
+
+  /* arsenal */
+  .grp{margin-bottom:20px}
+  .grp:last-child{margin-bottom:0}
+  .grp .gt{font-size:12px;letter-spacing:.18em;color:var(--dim);margin-bottom:10px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:12.5px;padding:5px 12px;border-radius:6px;border:1px solid var(--line);
+    background:var(--panel2);color:var(--text);transition:background .35s ease}
+  .chip.ai{color:var(--proton-soft);border-color:color-mix(in srgb,var(--proton) 45%,transparent)}
+  .chip.gr{color:var(--phosphor);border-color:color-mix(in srgb,var(--phosphor) 32%,transparent)}
+  .chip.sec{color:var(--blood);border-color:color-mix(in srgb,var(--blood) 38%,transparent)}
+
+  /* connect */
+  .links{display:flex;flex-wrap:wrap;gap:14px;margin-top:6px}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:13px 22px;min-height:46px;border-radius:8px;font-size:14px;font-weight:600;
+    text-decoration:none;border:1px solid var(--line);color:var(--text);background:var(--panel2);
+    transition:all .2s ease;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn:active{transform:translateY(0) scale(.98)}
+  .btn.p{border-color:var(--proton);color:var(--proton-soft);box-shadow:0 0 22px var(--glow1)}
+  .btn.p:hover{background:var(--proton);color:#fff}
+  .btn.g:hover{border-color:var(--phosphor);color:var(--phosphor)}
+  .resp{color:var(--phosphor);font-size:13.5px;margin-bottom:16px}
+
+  footer{margin-top:64px;color:var(--dim);font-size:12.5px;text-align:center}
+  footer .up{color:var(--proton-soft)}
+  footer .tag{margin-top:10px;letter-spacing:.06em}
+  footer .tag i{color:var(--phosphor);font-style:normal}
+  footer .cp{margin-top:14px;font-size:11.5px;opacity:.8}
+
+  a:focus-visible,.btn:focus-visible,.themer:focus-visible{outline:2px solid var(--phosphor);outline-offset:3px}
+
+  @media(max-width:720px){
+    body{font-size:14.5px}
+    .hero{padding:56px 0 44px}
+    .rotator{min-height:3.4em}
+    .fetch{grid-template-columns:1fr;gap:20px}
+    .ascii{font-size:8.5px}
+    .kv .row{grid-template-columns:96px 1fr}
+    .ops{grid-template-columns:1fr}
+    .rec{grid-template-columns:52px 1fr}
+    .rec .tag{display:none}
+    .out{padding:20px 16px}
+    section{padding:32px 0 6px}
+    .links{gap:10px}
+    .btn{flex:1 1 40%;min-width:130px}
+    .titlebar .path{font-size:12px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .rv{opacity:1;transform:none;transition:none}
+    .caret{animation:none}
+    html{scroll-behavior:auto}
+    body,.out,.glow,.titlebar{transition:none}
+  }
+</style>
+<script>
+/* theme init before paint: stored pref > system pref > dark */
+(function(){
+  var t='dark';
+  try{ var s=localStorage.getItem('theme'); if(s==='light'||s==='dark') t=s;
+       else if(window.matchMedia('(prefers-color-scheme: light)').matches) t='light';
+  }catch(e){ if(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches) t='light'; }
+  document.documentElement.setAttribute('data-theme',t);
+})();
+</script>
+</head>
+<body>
+<div class="glow"></div>
+<div class="scan"></div>
+
+<div class="wrap">
+
+  <div class="titlebar">
+    <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+    <span class="path"><b>berson@haifa</b>: ~/about</span>
+    <button class="themer" id="themer" aria-label="Switch color theme">☾ dark</button>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="prompt">berson@haifa:~$ <span class="cmd">whoami</span></div>
+    <h1 class="name">Vladimir Berson</h1>
+    <div class="rotator"><span id="rot"></span><span class="caret"></span></div>
+    <div class="meta">Haifa, Israel · <span>Founder &amp; Full-Spectrum Engineer</span> · building at the intersection of code, AI, and security</div>
+  </div>
+
+  <!-- NEOFETCH -->
+  <section id="about">
+    <div class="cmdline rv"><span class="host">berson@haifa:~$</span> <span class="typed" data-cmd="neofetch"></span></div>
+    <div class="out rv">
+      <div class="fetch">
+        <div class="asciiWrap"><pre class="ascii">██████╗ ███████╗██████╗ ███████╗ ██████╗ ███╗   ██╗
+██╔══██╗██╔════╝██╔══██╗██╔════╝██╔═══██╗████╗  ██║
+██████╔╝█████╗  ██████╔╝███████╗██║   ██║██╔██╗ ██║
+██╔══██╗██╔══╝  ██╔══██╗╚════██║██║   ██║██║╚██╗██║
+██████╔╝███████╗██║  ██║███████║╚██████╔╝██║ ╚████║
+╚═════╝ ╚══════╝╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝</pre></div>
+        <div class="kv">
+          <div class="row"><span class="k">OS</span><span class="v">Linux (daily driver)</span></div>
+          <div class="row"><span class="k">Role</span><span class="v">Full-Spectrum Engineer &amp; Founder</span></div>
+          <div class="row"><span class="k">Uptime</span><span class="v gr">10+ years building</span></div>
+          <div class="row"><span class="k">Kernel</span><span class="v">Code × AI × Security</span></div>
+          <div class="row"><span class="k">Stack</span><span class="v">Backend · Cloud · LLM Systems</span></div>
+          <div class="row"><span class="k">Degree</span><span class="v">B.Sc. Computer Science · summa cum laude</span></div>
+          <div class="row"><span class="k">Research</span><span class="v">M.A. Counter-Terrorism &amp; Intelligence</span></div>
+          <div class="row"><span class="k">Focus</span><span class="v">Threat Intelligence · OSINT</span></div>
+          <div class="row"><span class="k">Shell</span><span class="v gr">self-taught, no shortcuts</span></div>
         </div>
-      </button>
-
-      <!-- Mobile Menu Overlay -->
-      <div id="mobile-overlay" class="lg:hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-40 hidden" aria-hidden="true"></div>
-
-      <!-- Mobile Menu -->
-      <nav id="mobile-nav" class="lg:hidden fixed top-0 left-0 h-full w-80 bg-hell-black border-r border-term-green/30 z-50 shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out">
-        <div class="flex flex-col h-full p-6 pt-20">
-          <!-- Terminal Header -->
-          <div class="text-xl tracking-widest border-b border-term-green/30 pb-4 mb-8">
-            <a href="#/" class="flex items-center mobile-nav-link-home">
-              <span class="text-term-green">root</span><span class="text-white">@</span><span class="text-term-purple">D371L</span><span class="text-white">:</span><span class="text-term-blue">~</span><span class="text-white animate-blink">#</span>
-            </a>
-          </div>
-
-          <!-- Navigation Links -->
-          <div class="flex flex-col gap-4 text-lg">
-            <a href="#/" data-page="home" class="mobile-nav-link flex items-center gap-2 transition-colors group p-3 rounded border text-term-cyan border-term-cyan bg-term-cyan/10">
-              <span class="text-term-cyan font-bold">./</span>
-              <span>HOME</span>
-            </a>
-            <a href="#/experience" data-page="experience" class="mobile-nav-link flex items-center gap-2 transition-colors group p-3 rounded border text-gray-300 border-white/10 hover:text-term-green hover:border-term-green/50 hover:bg-white/5">
-              <span class="text-term-green opacity-50 group-hover:opacity-100 font-bold">./</span>
-              <span>EXPERIENCE</span>
-            </a>
-            <a href="#/scriptures" data-page="scriptures" class="mobile-nav-link flex items-center gap-2 transition-colors group p-3 rounded border text-gray-300 border-white/10 hover:text-term-yellow hover:border-term-yellow/50 hover:bg-white/5">
-              <span class="text-term-yellow opacity-50 group-hover:opacity-100 font-bold">./</span>
-              <span>SCRIPTURES</span>
-            </a>
-            <a href="#/techstack" data-page="techstack" class="mobile-nav-link flex items-center gap-2 transition-colors group p-3 rounded border text-gray-300 border-white/10 hover:text-term-purple hover:border-term-purple/50 hover:bg-white/5">
-              <span class="text-term-purple opacity-50 group-hover:opacity-100 font-bold">./</span>
-              <span>TECH_STACK</span>
-            </a>
-          </div>
-
-          <!-- Terminal Footer Info -->
-          <div class="mt-auto text-xs font-mono space-y-2 pt-8 border-t border-white/10">
-            <div class="flex justify-between">
-              <span class="text-gray-500">MEM_USAGE:</span>
-              <span class="text-term-green">666MB</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-gray-500">CPU_TEMP:</span>
-              <span class="text-ember-red">99°C</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-gray-500">UPTIME:</span>
-              <span class="text-term-blue">∞</span>
-            </div>
-            <div class="mt-4 border-t border-white/10 pt-2 text-center text-term-yellow animate-pulse">
-              ⚠ SYSTEM_CRITICAL
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <!-- Desktop Side Terminal Nav -->
-      <nav class="hidden lg:flex fixed left-0 top-0 h-full w-64 flex-col justify-between py-8 px-6 border-r border-white/10 z-40 bg-hell-black/95 backdrop-blur-sm">
-        <div class="text-xl tracking-widest border-b border-white/10 pb-4">
-          <a href="#/" class="flex items-center">
-            <span class="text-term-green">root</span><span class="text-white">@</span><span class="text-term-purple">D371L</span><span class="text-white">:</span><span class="text-term-blue">~</span><span class="text-white animate-blink">#</span>
-          </a>
-        </div>
-
-        <div class="flex flex-col gap-4 text-xl">
-          <a href="#/" data-page="home" class="desktop-nav-link flex items-center gap-2 transition-colors group p-2 rounded hover:bg-white/5 text-term-cyan">
-            <span class="text-term-cyan font-bold">./</span> HOME
-          </a>
-          <a href="#/experience" data-page="experience" class="desktop-nav-link flex items-center gap-2 transition-colors group p-2 rounded hover:bg-white/5 hover:text-term-green">
-            <span class="text-term-green opacity-50 group-hover:opacity-100 font-bold">./</span> EXPERIENCE
-          </a>
-          <a href="#/scriptures" data-page="scriptures" class="desktop-nav-link flex items-center gap-2 transition-colors group p-2 rounded hover:bg-white/5 hover:text-term-yellow">
-            <span class="text-term-yellow opacity-50 group-hover:opacity-100 font-bold">./</span> SCRIPTURES
-          </a>
-          <a href="#/techstack" data-page="techstack" class="desktop-nav-link flex items-center gap-2 transition-colors group p-2 rounded hover:bg-white/5 hover:text-term-purple">
-            <span class="text-term-purple opacity-50 group-hover:opacity-100 font-bold">./</span> TECH_STACK
-          </a>
-        </div>
-
-        <div class="text-xs font-mono space-y-2">
-          <div class="flex justify-between">
-            <span class="text-gray-500">MEM_USAGE:</span>
-            <span class="text-term-green">666MB</span>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-gray-500">CPU_TEMP:</span>
-            <span class="text-ember-red">99°C</span>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-gray-500">UPTIME:</span>
-            <span class="text-term-blue">∞</span>
-          </div>
-          <div class="mt-4 border-t border-white/10 pt-2 text-center text-term-yellow animate-pulse">
-            ⚠ SYSTEM_CRITICAL
-          </div>
-        </div>
-      </nav>
-
-      <!-- Main Content -->
-      <main class="relative z-10 w-full lg:pl-64">
-
-        <!-- ==================== PAGE: HOME ==================== -->
-        <div id="page-home" class="page-section">
-          <!-- Hero Section -->
-          <header class="min-h-screen flex flex-col items-center justify-center text-center px-4 relative border-b border-white/5">
-            <div class="absolute top-6 right-6 flex flex-col items-end text-xs md:text-sm font-mono space-y-1">
-              <div class="flex gap-4">
-                <span class="text-gray-500">PROTOCOL:</span>
-                <span class="text-term-purple">INFERNO_V2</span>
-              </div>
-              <div class="flex gap-4">
-                <span class="text-gray-500">PORT:</span>
-                <span class="text-term-cyan">666</span>
-              </div>
-              <div class="flex gap-4">
-                <span class="text-gray-500">STATUS:</span>
-                <span class="text-term-green">UNSTABLE</span>
-              </div>
-            </div>
-
-            <div class="mb-8 border border-term-yellow text-term-yellow px-4 py-1 tracking-[0.5em] text-lg uppercase bg-term-yellow/5 animate-pulse">
-              ROOT ACCESS GRANTED
-            </div>
-
-            <!-- GlitchHeader -->
-            <div class="relative inline-block select-none py-4">
-              <h1 class="text-7xl md:text-[9rem] font-bold text-transparent bg-clip-text bg-gradient-to-r from-term-purple via-term-cyan to-term-yellow relative z-10 leading-none tracking-tight animate-pulse drop-shadow-[0_0_10px_rgba(0,255,255,0.3)]">D371L</h1>
-              <h1 class="absolute top-0 left-1 text-7xl md:text-[9rem] text-term-cyan blur-[2px] z-0 leading-none opacity-60 mix-blend-screen tracking-tight animate-glitch" aria-hidden="true">D371L</h1>
-              <h1 class="absolute top-0 -left-1 text-7xl md:text-[9rem] text-term-purple blur-[2px] z-0 leading-none opacity-60 mix-blend-screen tracking-tight animate-glitch delay-75" aria-hidden="true">D371L</h1>
-            </div>
-
-            <div class="mt-8 text-xl md:text-2xl text-white max-w-lg leading-relaxed whitespace-pre-line border-l-4 border-term-purple pl-6 text-left bg-gradient-to-r from-term-purple/10 to-transparent p-4 w-full md:w-auto rounded-r-lg">
-              <span class="text-term-green mr-2">➜</span>ψ Forged in Hell
-I walk unseen, I code unheard
-Yet fire marks my path<span class="animate-blink inline-block w-3 h-6 bg-term-green ml-1 align-middle"></span>
-            </div>
-
-            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 text-sm tracking-widest font-bold">
-              <div class="border border-ember-red text-ember-red px-6 py-3 hover:bg-ember-red hover:text-white transition-all cursor-pointer shadow-[0_0_10px_rgba(255,0,51,0.2)] hover:shadow-[0_0_20px_rgba(255,0,51,0.6)]">HELL_MODE</div>
-              <div class="border border-term-cyan text-term-cyan px-6 py-3 hover:bg-term-cyan hover:text-black transition-all cursor-pointer shadow-[0_0_10px_rgba(0,243,255,0.2)] hover:shadow-[0_0_20px_rgba(0,243,255,0.6)]">CHAOS_ENGINE</div>
-              <div class="border border-term-purple text-term-purple px-6 py-3 hover:bg-term-purple hover:text-white transition-all cursor-pointer shadow-[0_0_10px_rgba(189,0,255,0.2)] hover:shadow-[0_0_20px_rgba(189,0,255,0.6)]">MEMENTO_MORI</div>
-              <div class="border border-term-green text-term-green px-6 py-3 hover:bg-term-green hover:text-black transition-all cursor-pointer shadow-[0_0_10px_rgba(0,255,65,0.2)] hover:shadow-[0_0_20px_rgba(0,255,65,0.6)]">INFERNO_OS</div>
-            </div>
-          </header>
-
-          <!-- Manifesto Section (Cyan Theme) -->
-          <section id="manifesto" class="py-24 px-6 md:px-12 max-w-6xl mx-auto border-b border-white/5 scroll-mt-10">
-            <!-- Section Header -->
-            <div class="flex flex-col items-start justify-center gap-2 mb-12 w-full border-b border-term-cyan/30 pb-4">
-              <div class="flex items-center gap-3 text-term-cyan animate-pulse">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a9 9 0 0 0-9 9v1a5 5 0 0 0 3 4.58V18a2 2 0 0 0 2 2h1v-2h2v2h2v-2h2v2h1a2 2 0 0 0 2-2v-1.42A5 5 0 0 0 21 12v-1a9 9 0 0 0-9-9z"/><circle cx="9" cy="11" r="1.5"/><circle cx="15" cy="11" r="1.5"/></svg>
-                <span class="text-xl tracking-widest uppercase">./manifesto.exe</span>
-              </div>
-              <h2 class="text-4xl md:text-5xl text-white px-2 py-1 uppercase tracking-widest border-l-4 border-term-cyan">Manifesto</h2>
-            </div>
-
-            <div class="relative p-6 md:p-10 border border-term-cyan/30 bg-hell-dark/80 shadow-[0_0_20px_rgba(0,243,255,0.05)]">
-              <div class="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-term-cyan"></div>
-              <div class="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-term-cyan"></div>
-
-              <div class="text-xl md:text-2xl leading-relaxed text-gray-300 space-y-6 text-left font-terminal">
-                <p>
-                  <span class="text-term-cyan/50 mr-2">[LOG_0]:</span>
-                  <span class="text-term-cyan mr-2">&gt;&gt;</span>
-                  I am a self-made entrepreneur forged through years of relentless pursuit.
-                </p>
-                <p>
-                  <span class="text-term-cyan/50 mr-2">[LOG_1]:</span>
-                  <span class="text-term-cyan mr-2">&gt;&gt;</span>
-                  As a developer I rose without masters, teaching myself every craft, every discipline, turning obstacles into fuel.
-                </p>
-                <p>
-                  <span class="text-term-cyan/50 mr-2">[LOG_2]:</span>
-                  <span class="text-term-cyan mr-2">&gt;&gt;</span>
-                  I have built and led countless projects, many bound to IT, each a spark that became flame.
-                </p>
-                <p>
-                  <span class="text-term-cyan/50 mr-2">[LOG_3]:</span>
-                  <span class="text-term-cyan mr-2">&gt;&gt;</span>
-                  What I create is born from silence and pressure, shaped in chaos, carried forward with unbroken will, sealed in fire.
-                </p>
-              </div>
-            </div>
-          </section>
-        </div>
-
-        <!-- ==================== PAGE: EXPERIENCE ==================== -->
-        <div id="page-experience" class="page-section hidden">
-          <section class="py-24 px-6 md:px-12 max-w-7xl mx-auto border-b border-white/5 scroll-mt-10">
-            <!-- Section Header -->
-            <div class="flex flex-col items-start justify-center gap-2 mb-12 w-full border-b border-term-green/30 pb-4">
-              <div class="flex items-center gap-3 text-term-green animate-pulse">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
-                <span class="text-xl tracking-widest uppercase">./experience.exe</span>
-              </div>
-              <h2 class="text-4xl md:text-5xl text-white px-2 py-1 uppercase tracking-widest border-l-4 border-term-green">Infernal Experience</h2>
-            </div>
-
-            <!-- Narrative Text -->
-            <div class="bg-term-green/5 border-l-2 border-term-green p-4 mb-16 max-w-3xl rounded-r">
-              <h4 class="text-term-green mb-2 uppercase tracking-widest text-sm font-bold">// SYSTEM_NARRATIVE</h4>
-              <div class="text-xl text-gray-200 italic leading-relaxed whitespace-pre-line">
-                <p>Through years I have carried fire into code and projects.</p>
-                <p>Some were forged into lasting creations, others burned as trials, but each left its mark in me.</p>
-              </div>
-            </div>
-
-            <!-- Project Cards -->
-            <div class="space-y-20">
-
-              <!-- Project 1: BILLCLICK (green, index 0) -->
-              <div class="border border-term-green bg-hell-black p-1 relative hover:bg-white/5 transition-colors group shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <div class="absolute top-0 left-0 w-full h-1 bg-term-green/20"></div>
-                <div class="absolute top-0 left-0 w-[100px] h-1 bg-term-green"></div>
-                <div class="flex flex-col lg:flex-row gap-8 p-6">
-                  <div class="w-full lg:w-1/3 relative border border-white/20 overflow-hidden h-64 group-hover:border-term-green transition-colors">
-                    <div class="absolute inset-0 bg-term-green/10 z-10 mix-blend-overlay pointer-events-none"></div>
-                    <img src="assets/billclick_screen.webp" alt="BILLCLICK" class="w-full h-full object-cover filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700" />
-                    <div class="absolute bottom-2 right-2 bg-black border border-term-green text-term-green text-xs px-2 py-0.5 z-30 font-bold">IMG_REF_1</div>
-                  </div>
-                  <div class="w-full lg:w-2/3 flex flex-col justify-between">
-                    <div>
-                      <div class="flex items-center gap-4 mb-4 border-b border-white/10 pb-2">
-                        <span class="text-3xl font-bold text-white tracking-wider">BILLCLICK</span>
-                        <span class="text-sm ml-auto text-term-green">UID: 0x001F</span>
-                      </div>
-                      <div class="text-lg text-gray-300 font-terminal leading-relaxed mb-6">
-                        <span class="text-term-green mr-2">$</span>Smart building committee management platform with full transparency. Services include cleaning, elevators, gardening, insurance, and more. Professional management and billing in one place.
-                      </div>
-                      <div class="mb-6">
-                        <div class="text-xs text-gray-500 mb-2 uppercase font-bold">[ DEPENDENCIES ]</div>
-                        <div class="flex flex-wrap gap-2">
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">HTML5</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">CSS3</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">JavaScript</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Responsive Design</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">SEO</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex justify-end">
-                      <a href="https://billclick.co.il/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-term-green text-black px-6 py-2 hover:bg-white hover:text-black font-bold tracking-widest transition-all hover:scale-105">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="14" width="4" height="6" rx="2"/><rect x="6" y="4" width="4" height="6" rx="2"/><path d="M6 20h4"/><path d="M14 10h4"/><path d="M6 14h2v6"/><path d="M14 4h2v6"/></svg>
-                        <span>EXECUTE</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Project 2: ICEKING_COURSES (cyan, index 1) -->
-              <div class="border border-term-cyan bg-hell-black p-1 relative hover:bg-white/5 transition-colors group shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <div class="absolute top-0 left-0 w-full h-1 bg-term-cyan/20"></div>
-                <div class="absolute top-0 left-0 w-[100px] h-1 bg-term-cyan"></div>
-                <div class="flex flex-col lg:flex-row gap-8 p-6">
-                  <div class="w-full lg:w-1/3 relative border border-white/20 overflow-hidden h-64 group-hover:border-term-cyan transition-colors">
-                    <div class="absolute inset-0 bg-term-cyan/10 z-10 mix-blend-overlay pointer-events-none"></div>
-                    <img src="assets/courses_iceking_screen.webp" alt="ICEKING_COURSES" class="w-full h-full object-cover filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700" />
-                    <div class="absolute bottom-2 right-2 bg-black border border-term-cyan text-term-cyan text-xs px-2 py-0.5 z-30 font-bold">IMG_REF_2</div>
-                  </div>
-                  <div class="w-full lg:w-2/3 flex flex-col justify-between">
-                    <div>
-                      <div class="flex items-center gap-4 mb-4 border-b border-white/10 pb-2">
-                        <span class="text-3xl font-bold text-white tracking-wider">ICEKING_COURSES</span>
-                        <span class="text-sm ml-auto text-term-cyan">UID: 0x002F</span>
-                      </div>
-                      <div class="text-lg text-gray-300 font-terminal leading-relaxed mb-6">
-                        <span class="text-term-cyan mr-2">$</span>Boikov Mindset — digital courses platform for mental coaching. Features course catalog, workshops, personal coach profiles, and student enrollment system.
-                      </div>
-                      <div class="mb-6">
-                        <div class="text-xs text-gray-500 mb-2 uppercase font-bold">[ DEPENDENCIES ]</div>
-                        <div class="flex flex-wrap gap-2">
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">React 19</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">TypeScript</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Vite</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Tailwind CSS</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Recharts</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex justify-end">
-                      <a href="https://courses.iceking.guru/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-term-cyan text-black px-6 py-2 hover:bg-white hover:text-black font-bold tracking-widest transition-all hover:scale-105">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="14" width="4" height="6" rx="2"/><rect x="6" y="4" width="4" height="6" rx="2"/><path d="M6 20h4"/><path d="M14 10h4"/><path d="M6 14h2v6"/><path d="M14 4h2v6"/></svg>
-                        <span>EXECUTE</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Project 3: ICEKING_MINDSET (purple, index 2) -->
-              <div class="border border-term-purple bg-hell-black p-1 relative hover:bg-white/5 transition-colors group shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <div class="absolute top-0 left-0 w-full h-1 bg-term-purple/20"></div>
-                <div class="absolute top-0 left-0 w-[100px] h-1 bg-term-purple"></div>
-                <div class="flex flex-col lg:flex-row gap-8 p-6">
-                  <div class="w-full lg:w-1/3 relative border border-white/20 overflow-hidden h-64 group-hover:border-term-purple transition-colors">
-                    <div class="absolute inset-0 bg-term-purple/10 z-10 mix-blend-overlay pointer-events-none"></div>
-                    <img src="assets/mindset_iceking_screen.webp" alt="ICEKING_MINDSET" class="w-full h-full object-cover filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700" />
-                    <div class="absolute bottom-2 right-2 bg-black border border-term-purple text-term-purple text-xs px-2 py-0.5 z-30 font-bold">IMG_REF_3</div>
-                  </div>
-                  <div class="w-full lg:w-2/3 flex flex-col justify-between">
-                    <div>
-                      <div class="flex items-center gap-4 mb-4 border-b border-white/10 pb-2">
-                        <span class="text-3xl font-bold text-white tracking-wider">ICEKING_MINDSET</span>
-                        <span class="text-sm ml-auto text-term-purple">UID: 0x003F</span>
-                      </div>
-                      <div class="text-lg text-gray-300 font-terminal leading-relaxed mb-6">
-                        <span class="text-term-purple mr-2">$</span>Boikov Mindset — landing page for a certified NLP mental coach. Mental training and peak performance. Practical tools for self-control, resilience, and achieving goals.
-                      </div>
-                      <div class="mb-6">
-                        <div class="text-xs text-gray-500 mb-2 uppercase font-bold">[ DEPENDENCIES ]</div>
-                        <div class="flex flex-wrap gap-2">
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">HTML5</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">CSS3</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">JavaScript</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Tailwind CSS</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Google Analytics</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex justify-end">
-                      <a href="https://mindset.iceking.guru/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-term-purple text-white px-6 py-2 hover:bg-white hover:text-black font-bold tracking-widest transition-all hover:scale-105">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="14" width="4" height="6" rx="2"/><rect x="6" y="4" width="4" height="6" rx="2"/><path d="M6 20h4"/><path d="M14 10h4"/><path d="M6 14h2v6"/><path d="M14 4h2v6"/></svg>
-                        <span>EXECUTE</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Project 4: DEV_CONSOLE (blue, index 3) -->
-              <div class="border border-term-blue bg-hell-black p-1 relative hover:bg-white/5 transition-colors group shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <div class="absolute top-0 left-0 w-full h-1 bg-term-blue/20"></div>
-                <div class="absolute top-0 left-0 w-[100px] h-1 bg-term-blue"></div>
-                <div class="flex flex-col lg:flex-row gap-8 p-6">
-                  <div class="w-full lg:w-1/3 relative border border-white/20 overflow-hidden h-64 group-hover:border-term-blue transition-colors">
-                    <div class="absolute inset-0 bg-term-blue/10 z-10 mix-blend-overlay pointer-events-none"></div>
-                    <img src="assets/devconsole_screen.webp" alt="DEV_CONSOLE" class="w-full h-full object-cover filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700" />
-                    <div class="absolute bottom-2 right-2 bg-black border border-term-blue text-term-blue text-xs px-2 py-0.5 z-30 font-bold">IMG_REF_4</div>
-                  </div>
-                  <div class="w-full lg:w-2/3 flex flex-col justify-between">
-                    <div>
-                      <div class="flex items-center gap-4 mb-4 border-b border-white/10 pb-2">
-                        <span class="text-3xl font-bold text-white tracking-wider">DEV_CONSOLE</span>
-                        <span class="text-sm ml-auto text-term-blue">UID: 0x004F</span>
-                      </div>
-                      <div class="text-lg text-gray-300 font-terminal leading-relaxed mb-6">
-                        <span class="text-term-blue mr-2">$</span>Secure access portal and developer dashboard with neon cyberpunk aesthetic. Role-based authentication, admin and developer panels, and dark/light mode with customizable accent colors.
-                      </div>
-                      <div class="mb-6">
-                        <div class="text-xs text-gray-500 mb-2 uppercase font-bold">[ DEPENDENCIES ]</div>
-                        <div class="flex flex-wrap gap-2">
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">React</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">TypeScript</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Tailwind CSS</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Vite</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex justify-end">
-                      <a href="https://d371l.github.io/devconsole/#/login" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-term-blue text-white px-6 py-2 hover:bg-white hover:text-black font-bold tracking-widest transition-all hover:scale-105">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="14" width="4" height="6" rx="2"/><rect x="6" y="4" width="4" height="6" rx="2"/><path d="M6 20h4"/><path d="M14 10h4"/><path d="M6 14h2v6"/><path d="M14 4h2v6"/></svg>
-                        <span>EXECUTE</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Project 5: VAADBIT (green, index 4) -->
-              <div class="border border-term-green bg-hell-black p-1 relative hover:bg-white/5 transition-colors group shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <div class="absolute top-0 left-0 w-full h-1 bg-term-green/20"></div>
-                <div class="absolute top-0 left-0 w-[100px] h-1 bg-term-green"></div>
-                <div class="flex flex-col lg:flex-row gap-8 p-6">
-                  <div class="w-full lg:w-1/3 relative border border-white/20 overflow-hidden h-64 group-hover:border-term-green transition-colors">
-                    <div class="absolute inset-0 bg-term-green/10 z-10 mix-blend-overlay pointer-events-none"></div>
-                    <img src="assets/vaadbit_screen.webp" alt="VAADBIT" class="w-full h-full object-cover filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700" />
-                    <div class="absolute bottom-2 right-2 bg-black border border-term-green text-term-green text-xs px-2 py-0.5 z-30 font-bold">IMG_REF_5</div>
-                  </div>
-                  <div class="w-full lg:w-2/3 flex flex-col justify-between">
-                    <div>
-                      <div class="flex items-center gap-4 mb-4 border-b border-white/10 pb-2">
-                        <span class="text-3xl font-bold text-white tracking-wider">VAADBIT</span>
-                        <span class="text-sm ml-auto text-term-green">UID: 0x005F</span>
-                      </div>
-                      <div class="text-lg text-gray-300 font-terminal leading-relaxed mb-6">
-                        <span class="text-term-green mr-2">$</span>Building committee payment management app. Simple, secure, and fast payments with full data transparency and real-time updates. Available on iOS and Android.
-                      </div>
-                      <div class="mb-6">
-                        <div class="text-xs text-gray-500 mb-2 uppercase font-bold">[ DEPENDENCIES ]</div>
-                        <div class="flex flex-wrap gap-2">
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">WordPress</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Elementor</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">PHP</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Mobile App</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex justify-end">
-                      <a href="https://vaadbit.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-term-green text-black px-6 py-2 hover:bg-white hover:text-black font-bold tracking-widest transition-all hover:scale-105">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="14" width="4" height="6" rx="2"/><rect x="6" y="4" width="4" height="6" rx="2"/><path d="M6 20h4"/><path d="M14 10h4"/><path d="M6 14h2v6"/><path d="M14 4h2v6"/></svg>
-                        <span>EXECUTE</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Project 6: VAADBOT (cyan, index 5) -->
-              <div class="border border-term-cyan bg-hell-black p-1 relative hover:bg-white/5 transition-colors group shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <div class="absolute top-0 left-0 w-full h-1 bg-term-cyan/20"></div>
-                <div class="absolute top-0 left-0 w-[100px] h-1 bg-term-cyan"></div>
-                <div class="flex flex-col lg:flex-row gap-8 p-6">
-                  <div class="w-full lg:w-1/3 relative border border-white/20 overflow-hidden h-64 group-hover:border-term-cyan transition-colors">
-                    <div class="absolute inset-0 bg-term-cyan/10 z-10 mix-blend-overlay pointer-events-none"></div>
-                    <img src="assets/vaadbot_screen.webp" alt="VAADBOT" class="w-full h-full object-cover filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700" />
-                    <div class="absolute bottom-2 right-2 bg-black border border-term-cyan text-term-cyan text-xs px-2 py-0.5 z-30 font-bold">IMG_REF_6</div>
-                  </div>
-                  <div class="w-full lg:w-2/3 flex flex-col justify-between">
-                    <div>
-                      <div class="flex items-center gap-4 mb-4 border-b border-white/10 pb-2">
-                        <span class="text-3xl font-bold text-white tracking-wider">VAADBOT</span>
-                        <span class="text-sm ml-auto text-term-cyan">UID: 0x006F</span>
-                      </div>
-                      <div class="text-lg text-gray-300 font-terminal leading-relaxed mb-6">
-                        <span class="text-term-cyan mr-2">$</span>Building committee management app with Alexy AI digital assistant. Management, collections, discussions, tenant meetings, and supplier management with full report transparency.
-                      </div>
-                      <div class="mb-6">
-                        <div class="text-xs text-gray-500 mb-2 uppercase font-bold">[ DEPENDENCIES ]</div>
-                        <div class="flex flex-wrap gap-2">
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">WordPress</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Elementor</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">PHP</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">AI</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Mobile App</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex justify-end">
-                      <a href="https://vaadbot.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-term-cyan text-black px-6 py-2 hover:bg-white hover:text-black font-bold tracking-widest transition-all hover:scale-105">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="14" width="4" height="6" rx="2"/><rect x="6" y="4" width="4" height="6" rx="2"/><path d="M6 20h4"/><path d="M14 10h4"/><path d="M6 14h2v6"/><path d="M14 4h2v6"/></svg>
-                        <span>EXECUTE</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Project 7: MORAL_TOGETHER (purple, index 6) -->
-              <div class="border border-term-purple bg-hell-black p-1 relative hover:bg-white/5 transition-colors group shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <div class="absolute top-0 left-0 w-full h-1 bg-term-purple/20"></div>
-                <div class="absolute top-0 left-0 w-[100px] h-1 bg-term-purple"></div>
-                <div class="flex flex-col lg:flex-row gap-8 p-6">
-                  <div class="w-full lg:w-1/3 relative border border-white/20 overflow-hidden h-64 group-hover:border-term-purple transition-colors">
-                    <div class="absolute inset-0 bg-term-purple/10 z-10 mix-blend-overlay pointer-events-none"></div>
-                    <img src="assets/moraltogether_screen.webp" alt="MORAL_TOGETHER" class="w-full h-full object-cover filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700" />
-                    <div class="absolute bottom-2 right-2 bg-black border border-term-purple text-term-purple text-xs px-2 py-0.5 z-30 font-bold">IMG_REF_7</div>
-                  </div>
-                  <div class="w-full lg:w-2/3 flex flex-col justify-between">
-                    <div>
-                      <div class="flex items-center gap-4 mb-4 border-b border-white/10 pb-2">
-                        <span class="text-3xl font-bold text-white tracking-wider">MORAL_TOGETHER</span>
-                        <span class="text-sm ml-auto text-term-purple">UID: 0x007F</span>
-                      </div>
-                      <div class="text-lg text-gray-300 font-terminal leading-relaxed mb-6">
-                        <span class="text-term-purple mr-2">$</span>Social organization connecting good forces. An ecosystem that links people, initiatives, and nonprofits to create a reality of abundance and hope. 500+ participants.
-                      </div>
-                      <div class="mb-6">
-                        <div class="text-xs text-gray-500 mb-2 uppercase font-bold">[ DEPENDENCIES ]</div>
-                        <div class="flex flex-wrap gap-2">
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">HTML5</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">CSS3</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">JavaScript</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">FontAwesome</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex justify-end">
-                      <a href="https://moraltogether.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-term-purple text-white px-6 py-2 hover:bg-white hover:text-black font-bold tracking-widest transition-all hover:scale-105">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="14" width="4" height="6" rx="2"/><rect x="6" y="4" width="4" height="6" rx="2"/><path d="M6 20h4"/><path d="M14 10h4"/><path d="M6 14h2v6"/><path d="M14 4h2v6"/></svg>
-                        <span>EXECUTE</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Project 8: NURSES_ACADEMY (blue, index 7) -->
-              <div class="border border-term-blue bg-hell-black p-1 relative hover:bg-white/5 transition-colors group shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <div class="absolute top-0 left-0 w-full h-1 bg-term-blue/20"></div>
-                <div class="absolute top-0 left-0 w-[100px] h-1 bg-term-blue"></div>
-                <div class="flex flex-col lg:flex-row gap-8 p-6">
-                  <div class="w-full lg:w-1/3 relative border border-white/20 overflow-hidden h-64 group-hover:border-term-blue transition-colors">
-                    <div class="absolute inset-0 bg-term-blue/10 z-10 mix-blend-overlay pointer-events-none"></div>
-                    <img src="assets/nurses_screen.webp" alt="NURSES_ACADEMY" class="w-full h-full object-cover filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700" />
-                    <div class="absolute bottom-2 right-2 bg-black border border-term-blue text-term-blue text-xs px-2 py-0.5 z-30 font-bold">IMG_REF_8</div>
-                  </div>
-                  <div class="w-full lg:w-2/3 flex flex-col justify-between">
-                    <div>
-                      <div class="flex items-center gap-4 mb-4 border-b border-white/10 pb-2">
-                        <span class="text-3xl font-bold text-white tracking-wider">NURSES_ACADEMY</span>
-                        <span class="text-sm ml-auto text-term-blue">UID: 0x008F</span>
-                      </div>
-                      <div class="text-lg text-gray-300 font-terminal leading-relaxed mb-6">
-                        <span class="text-term-blue mr-2">$</span>Academic nursing school website for Dr. J. Zeideh at Bnai Zion Medical Center. Course programs, faculty staff, registration, news, and events for nursing students.
-                      </div>
-                      <div class="mb-6">
-                        <div class="text-xs text-gray-500 mb-2 uppercase font-bold">[ DEPENDENCIES ]</div>
-                        <div class="flex flex-wrap gap-2">
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">HTML5</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">CSS3</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">JavaScript</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Responsive Design</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex justify-end">
-                      <a href="https://nurses.co.il/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-term-blue text-white px-6 py-2 hover:bg-white hover:text-black font-bold tracking-widest transition-all hover:scale-105">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="14" width="4" height="6" rx="2"/><rect x="6" y="4" width="4" height="6" rx="2"/><path d="M6 20h4"/><path d="M14 10h4"/><path d="M6 14h2v6"/><path d="M14 4h2v6"/></svg>
-                        <span>EXECUTE</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Project 9: GODS_WILL (green, index 8) -->
-              <div class="border border-term-green bg-hell-black p-1 relative hover:bg-white/5 transition-colors group shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <div class="absolute top-0 left-0 w-full h-1 bg-term-green/20"></div>
-                <div class="absolute top-0 left-0 w-[100px] h-1 bg-term-green"></div>
-                <div class="flex flex-col lg:flex-row gap-8 p-6">
-                  <div class="w-full lg:w-1/3 relative border border-white/20 overflow-hidden h-64 group-hover:border-term-green transition-colors">
-                    <div class="absolute inset-0 bg-term-green/10 z-10 mix-blend-overlay pointer-events-none"></div>
-                    <img src="assets/godswill_screen.webp" alt="GODS_WILL" class="w-full h-full object-cover filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700" />
-                    <div class="absolute bottom-2 right-2 bg-black border border-term-green text-term-green text-xs px-2 py-0.5 z-30 font-bold">IMG_REF_9</div>
-                  </div>
-                  <div class="w-full lg:w-2/3 flex flex-col justify-between">
-                    <div>
-                      <div class="flex items-center gap-4 mb-4 border-b border-white/10 pb-2">
-                        <span class="text-3xl font-bold text-white tracking-wider">GODS_WILL</span>
-                        <span class="text-sm ml-auto text-term-green">UID: 0x009F</span>
-                      </div>
-                      <div class="text-lg text-gray-300 font-terminal leading-relaxed mb-6">
-                        <span class="text-term-green mr-2">$</span>Social network platform for a faith-based community. Create groups, add photos, connect with friends, and share content. Available on Google Play and App Store.
-                      </div>
-                      <div class="mb-6">
-                        <div class="text-xs text-gray-500 mb-2 uppercase font-bold">[ DEPENDENCIES ]</div>
-                        <div class="flex flex-wrap gap-2">
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">PHP</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">OSSN</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">jQuery</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Bootstrap</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Mobile App</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex justify-end">
-                      <a href="https://godswillambassador.com/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-term-green text-black px-6 py-2 hover:bg-white hover:text-black font-bold tracking-widest transition-all hover:scale-105">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="14" width="4" height="6" rx="2"/><rect x="6" y="4" width="4" height="6" rx="2"/><path d="M6 20h4"/><path d="M14 10h4"/><path d="M6 14h2v6"/><path d="M14 4h2v6"/></svg>
-                        <span>EXECUTE</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Project 10: ORLY_SITBON (cyan, index 9) -->
-              <div class="border border-term-cyan bg-hell-black p-1 relative hover:bg-white/5 transition-colors group shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <div class="absolute top-0 left-0 w-full h-1 bg-term-cyan/20"></div>
-                <div class="absolute top-0 left-0 w-[100px] h-1 bg-term-cyan"></div>
-                <div class="flex flex-col lg:flex-row gap-8 p-6">
-                  <div class="w-full lg:w-1/3 relative border border-white/20 overflow-hidden h-64 group-hover:border-term-cyan transition-colors">
-                    <div class="absolute inset-0 bg-term-cyan/10 z-10 mix-blend-overlay pointer-events-none"></div>
-                    <img src="assets/orlysitbon_screen.png" alt="ORLY_SITBON" class="w-full h-full object-cover filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700" />
-                    <div class="absolute bottom-2 right-2 bg-black border border-term-cyan text-term-cyan text-xs px-2 py-0.5 z-30 font-bold">IMG_REF_10</div>
-                  </div>
-                  <div class="w-full lg:w-2/3 flex flex-col justify-between">
-                    <div>
-                      <div class="flex items-center gap-4 mb-4 border-b border-white/10 pb-2">
-                        <span class="text-3xl font-bold text-white tracking-wider">ORLY_SITBON</span>
-                        <span class="text-sm ml-auto text-term-cyan">UID: 0x0010F</span>
-                      </div>
-                      <div class="text-lg text-gray-300 font-terminal leading-relaxed mb-6">
-                        <span class="text-term-cyan mr-2">$</span>Orly Sitbon Patisserie — elegant business website for a French-style bakery in Nahariya. Showcases pastries, desserts, brunches, and catering platters with responsive design and local SEO.
-                      </div>
-                      <div class="mb-6">
-                        <div class="text-xs text-gray-500 mb-2 uppercase font-bold">[ DEPENDENCIES ]</div>
-                        <div class="flex flex-wrap gap-2">
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">HTML5</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">CSS3</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">JavaScript</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Responsive Design</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">SEO</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex justify-end">
-                      <a href="https://orlysitbon.co.il/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-term-cyan text-black px-6 py-2 hover:bg-white hover:text-black font-bold tracking-widest transition-all hover:scale-105">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="14" width="4" height="6" rx="2"/><rect x="6" y="4" width="4" height="6" rx="2"/><path d="M6 20h4"/><path d="M14 10h4"/><path d="M6 14h2v6"/><path d="M14 4h2v6"/></svg>
-                        <span>EXECUTE</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Project 11: HAZMAG (purple, index 10) -->
-              <div class="border border-term-purple bg-hell-black p-1 relative hover:bg-white/5 transition-colors group shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <div class="absolute top-0 left-0 w-full h-1 bg-term-purple/20"></div>
-                <div class="absolute top-0 left-0 w-[100px] h-1 bg-term-purple"></div>
-                <div class="flex flex-col lg:flex-row gap-8 p-6">
-                  <div class="w-full lg:w-1/3 relative border border-white/20 overflow-hidden h-64 group-hover:border-term-purple transition-colors">
-                    <div class="absolute inset-0 bg-term-purple/10 z-10 mix-blend-overlay pointer-events-none"></div>
-                    <img src="assets/hazmag_screen.webp" alt="HAZMAG" class="w-full h-full object-cover filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700" />
-                    <div class="absolute bottom-2 right-2 bg-black border border-term-purple text-term-purple text-xs px-2 py-0.5 z-30 font-bold">IMG_REF_11</div>
-                  </div>
-                  <div class="w-full lg:w-2/3 flex flex-col justify-between">
-                    <div>
-                      <div class="flex items-center gap-4 mb-4 border-b border-white/10 pb-2">
-                        <span class="text-3xl font-bold text-white tracking-wider">HAZMAG</span>
-                        <span class="text-sm ml-auto text-term-purple">UID: 0x0011F</span>
-                      </div>
-                      <div class="text-lg text-gray-300 font-terminal leading-relaxed mb-6">
-                        <span class="text-term-purple mr-2">$</span>Guardians of Balance. OSINT research and reporting platform for a non-governmental organization investigating hostile actors and threats to public safety. Web and mobile application.
-                      </div>
-                      <div class="mb-6">
-                        <div class="text-xs text-gray-500 mb-2 uppercase font-bold">[ DEPENDENCIES ]</div>
-                        <div class="flex flex-wrap gap-2">
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Flutter</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Dart</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">OSINT</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Mobile App</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex justify-end">
-                      <a href="https://hazmag.org/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-term-purple text-white px-6 py-2 hover:bg-white hover:text-black font-bold tracking-widest transition-all hover:scale-105">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="14" width="4" height="6" rx="2"/><rect x="6" y="4" width="4" height="6" rx="2"/><path d="M6 20h4"/><path d="M14 10h4"/><path d="M6 14h2v6"/><path d="M14 4h2v6"/></svg>
-                        <span>EXECUTE</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Project 12: ZUZIM_CASH (blue, index 11) -->
-              <div class="border border-term-blue bg-hell-black p-1 relative hover:bg-white/5 transition-colors group shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <div class="absolute top-0 left-0 w-full h-1 bg-term-blue/20"></div>
-                <div class="absolute top-0 left-0 w-[100px] h-1 bg-term-blue"></div>
-                <div class="flex flex-col lg:flex-row gap-8 p-6">
-                  <div class="w-full lg:w-1/3 relative border border-white/20 overflow-hidden h-64 group-hover:border-term-blue transition-colors">
-                    <div class="absolute inset-0 bg-term-blue/10 z-10 mix-blend-overlay pointer-events-none"></div>
-                    <img src="assets/zuzim_cash.jpg" alt="ZUZIM_CASH" class="w-full h-full object-cover filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700" />
-                    <div class="absolute bottom-2 right-2 bg-black border border-term-blue text-term-blue text-xs px-2 py-0.5 z-30 font-bold">IMG_REF_12</div>
-                  </div>
-                  <div class="w-full lg:w-2/3 flex flex-col justify-between">
-                    <div>
-                      <div class="flex items-center gap-4 mb-4 border-b border-white/10 pb-2">
-                        <span class="text-3xl font-bold text-white tracking-wider">ZUZIM_CASH</span>
-                        <span class="text-sm ml-auto text-term-blue">UID: 0x0012F</span>
-                      </div>
-                      <div class="text-lg text-gray-300 font-terminal leading-relaxed mb-6">
-                        <span class="text-term-blue mr-2">$</span>Modern digital wallet platform with multi-level financial management system. Unites administrators, branches, and users in a unified ecosystem with full control and transaction transparency.
-                      </div>
-                      <div class="mb-6">
-                        <div class="text-xs text-gray-500 mb-2 uppercase font-bold">[ DEPENDENCIES ]</div>
-                        <div class="flex flex-wrap gap-2">
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">SvelteKit</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">TypeScript</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Go</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Gin Framework</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">PostgreSQL</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">JWT</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">GORM</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Tailwind CSS</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Docker</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">DigitalOcean</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex justify-end">
-                      <a href="https://zuzim.cash/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-term-blue text-white px-6 py-2 hover:bg-white hover:text-black font-bold tracking-widest transition-all hover:scale-105">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="14" width="4" height="6" rx="2"/><rect x="6" y="4" width="4" height="6" rx="2"/><path d="M6 20h4"/><path d="M14 10h4"/><path d="M6 14h2v6"/><path d="M14 4h2v6"/></svg>
-                        <span>EXECUTE</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Project 13: ASMODEUS (green, index 12) -->
-              <div class="border border-term-green bg-hell-black p-1 relative hover:bg-white/5 transition-colors group shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <div class="absolute top-0 left-0 w-full h-1 bg-term-green/20"></div>
-                <div class="absolute top-0 left-0 w-[100px] h-1 bg-term-green"></div>
-                <div class="flex flex-col lg:flex-row gap-8 p-6">
-                  <div class="w-full lg:w-1/3 relative border border-white/20 overflow-hidden h-64 group-hover:border-term-green transition-colors">
-                    <div class="absolute inset-0 bg-term-green/10 z-10 mix-blend-overlay pointer-events-none"></div>
-                    <img src="assets/asmodeus_screen.jpg" alt="ASMODEUS" class="w-full h-full object-cover filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700" />
-                    <div class="absolute bottom-2 right-2 bg-black border border-term-green text-term-green text-xs px-2 py-0.5 z-30 font-bold">IMG_REF_13</div>
-                  </div>
-                  <div class="w-full lg:w-2/3 flex flex-col justify-between">
-                    <div>
-                      <div class="flex items-center gap-4 mb-4 border-b border-white/10 pb-2">
-                        <span class="text-3xl font-bold text-white tracking-wider">ASMODEUS</span>
-                        <span class="text-sm ml-auto text-term-green">UID: 0x0013F</span>
-                      </div>
-                      <div class="text-lg text-gray-300 font-terminal leading-relaxed mb-6">
-                        <span class="text-term-green mr-2">$</span>Neon wheel of fortune for giveaways and interactive picks. Saves state, plays synthy sounds, has demo auto-spin mode, and ships as a PWA.
-                      </div>
-                      <div class="mb-6">
-                        <div class="text-xs text-gray-500 mb-2 uppercase font-bold">[ DEPENDENCIES ]</div>
-                        <div class="flex flex-wrap gap-2">
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">React 18</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">TypeScript</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Vite 5</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Tailwind CSS 3</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">D3</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Web Audio API</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">PWA</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex justify-end">
-                      <a href="https://d371l.github.io/asmodeus/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-term-green text-black px-6 py-2 hover:bg-white hover:text-black font-bold tracking-widest transition-all hover:scale-105">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="14" width="4" height="6" rx="2"/><rect x="6" y="4" width="4" height="6" rx="2"/><path d="M6 20h4"/><path d="M14 10h4"/><path d="M6 14h2v6"/><path d="M14 4h2v6"/></svg>
-                        <span>EXECUTE</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Project 14: BELIARG (cyan, index 13) -->
-              <div class="border border-term-cyan bg-hell-black p-1 relative hover:bg-white/5 transition-colors group shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <div class="absolute top-0 left-0 w-full h-1 bg-term-cyan/20"></div>
-                <div class="absolute top-0 left-0 w-[100px] h-1 bg-term-cyan"></div>
-                <div class="flex flex-col lg:flex-row gap-8 p-6">
-                  <div class="w-full lg:w-1/3 relative border border-white/20 overflow-hidden h-64 group-hover:border-term-cyan transition-colors">
-                    <div class="absolute inset-0 bg-term-cyan/10 z-10 mix-blend-overlay pointer-events-none"></div>
-                    <img src="assets/beliarg_screen.jpg" alt="BELIARG" class="w-full h-full object-cover filter grayscale contrast-125 brightness-75 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700" />
-                    <div class="absolute bottom-2 right-2 bg-black border border-term-cyan text-term-cyan text-xs px-2 py-0.5 z-30 font-bold">IMG_REF_14</div>
-                  </div>
-                  <div class="w-full lg:w-2/3 flex flex-col justify-between">
-                    <div>
-                      <div class="flex items-center gap-4 mb-4 border-b border-white/10 pb-2">
-                        <span class="text-3xl font-bold text-white tracking-wider">BELIARG</span>
-                        <span class="text-sm ml-auto text-term-cyan">UID: 0x0014F</span>
-                      </div>
-                      <div class="text-lg text-gray-300 font-terminal leading-relaxed mb-6">
-                        <span class="text-term-cyan mr-2">$</span>The Eternal Forge. "Exure vivos donec sol taceat". A dark, gamified productivity ecosystem (PWA) that transforms daily tasks into Chains, expenses into Sacrifices, and habits into Rituals.
-                      </div>
-                      <div class="mb-6">
-                        <div class="text-xs text-gray-500 mb-2 uppercase font-bold">[ DEPENDENCIES ]</div>
-                        <div class="flex flex-wrap gap-2">
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">React 19</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">Node.js</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">PostgreSQL</span>
-                          <span class="text-white border border-white/20 px-2 py-1 text-sm bg-white/5 uppercase">PWA</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex justify-end">
-                      <a href="https://d371l.github.io/beliarg/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 bg-term-cyan text-black px-6 py-2 hover:bg-white hover:text-black font-bold tracking-widest transition-all hover:scale-105">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="14" width="4" height="6" rx="2"/><rect x="6" y="4" width="4" height="6" rx="2"/><path d="M6 20h4"/><path d="M14 10h4"/><path d="M6 14h2v6"/><path d="M14 4h2v6"/></svg>
-                        <span>EXECUTE</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </section>
-        </div>
-
-        <!-- ==================== PAGE: SCRIPTURES ==================== -->
-        <div id="page-scriptures" class="page-section hidden">
-          <section class="py-24 px-6 md:px-12 bg-hell-dark/50 relative border-y border-white/5 scroll-mt-10">
-            <div class="max-w-7xl mx-auto">
-              <!-- Section Header -->
-              <div class="flex flex-col items-start justify-center gap-2 mb-12 w-full border-b border-term-yellow/30 pb-4">
-                <div class="flex items-center gap-3 text-term-yellow animate-pulse">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg>
-                  <span class="text-xl tracking-widest uppercase">./scriptures.exe</span>
-                </div>
-                <h2 class="text-4xl md:text-5xl text-white px-2 py-1 uppercase tracking-widest border-l-4 border-term-yellow">Dark Scriptures</h2>
-              </div>
-
-              <div class="text-left max-w-2xl mb-12 text-lg text-term-yellow/80 whitespace-pre-line border border-term-yellow/30 border-dashed p-4 bg-term-yellow/5">/* Marks I earned through fire, silence, and persistence.
-Each seal a proof of trial, each page a fragment of the abyss. */</div>
-
-              <!-- Certification Cards -->
-              <div class="grid md:grid-cols-3 gap-6">
-                <!-- Cert 1: Bachelor -->
-                <div class="bg-hell-black border border-white/10 p-6 hover:border-term-yellow/50 hover:bg-term-yellow/5 transition-all group relative">
-                  <div class="absolute top-2 right-2 text-gray-700 group-hover:text-term-yellow transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg>
-                  </div>
-                  <div class="text-xs text-term-yellow mb-4 uppercase tracking-widest border-b border-white/10 pb-2">
-                    SEAL_01 // Jan 5, 2026
-                  </div>
-                  <h3 class="text-white text-2xl mb-2 group-hover:text-term-yellow transition-colors">Bachelor of Science in Computer Science</h3>
-                  <div class="text-sm text-gray-500 mb-4">ISSUED_BY: <span class="text-white">UoPeople</span></div>
-                  <p class="text-gray-400 text-lg leading-tight">A long path through code, theory, and relentless self-perfection.</p>
-                </div>
-
-                <!-- Cert 2: Cybersecurity -->
-                <div class="bg-hell-black border border-white/10 p-6 hover:border-term-yellow/50 hover:bg-term-yellow/5 transition-all group relative">
-                  <div class="absolute top-2 right-2 text-gray-700 group-hover:text-term-yellow transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
-                  </div>
-                  <div class="text-xs text-term-yellow mb-4 uppercase tracking-widest border-b border-white/10 pb-2">
-                    SEAL_02 // Sep 2024
-                  </div>
-                  <h3 class="text-white text-2xl mb-2 group-hover:text-term-yellow transition-colors">Cybersecurity Seal</h3>
-                  <div class="text-sm text-gray-500 mb-4">ISSUED_BY: <span class="text-white">Google</span></div>
-                  <p class="text-gray-400 text-lg leading-tight">Mark of fire and defense, carved in Python, Linux, SQL, SIEM and IDS.</p>
-                </div>
-
-                <!-- Cert 3: IT Support -->
-                <div class="bg-hell-black border border-white/10 p-6 hover:border-term-yellow/50 hover:bg-term-yellow/5 transition-all group relative">
-                  <div class="absolute top-2 right-2 text-gray-700 group-hover:text-term-yellow transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12.5 8 15l2 2.5"/><path d="m14 12.5 2 2.5-2 2.5"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/></svg>
-                  </div>
-                  <div class="text-xs text-term-yellow mb-4 uppercase tracking-widest border-b border-white/10 pb-2">
-                    SEAL_03 // Aug 2021
-                  </div>
-                  <h3 class="text-white text-2xl mb-2 group-hover:text-term-yellow transition-colors">IT Support Seal</h3>
-                  <div class="text-sm text-gray-500 mb-4">ISSUED_BY: <span class="text-white">Google</span></div>
-                  <p class="text-gray-400 text-lg leading-tight">Foundation of systems, forged in troubleshooting, networking, and security.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-
-        <!-- ==================== PAGE: TECHSTACK ==================== -->
-        <div id="page-techstack" class="page-section hidden">
-          <section class="py-24 px-6 md:px-12 max-w-7xl mx-auto scroll-mt-10">
-            <!-- Section Header -->
-            <div class="flex flex-col items-start justify-center gap-2 mb-12 w-full border-b border-term-purple/30 pb-4">
-              <div class="flex items-center gap-3 text-term-purple animate-pulse">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg>
-                <span class="text-xl tracking-widest uppercase">./techstack.exe</span>
-              </div>
-              <h2 class="text-4xl md:text-5xl text-white px-2 py-1 uppercase tracking-widest border-l-4 border-term-purple">Cursed Techstack</h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <!-- Languages (blue) -->
-              <div class="border border-term-blue bg-hell-black p-0 h-full">
-                <div class="bg-term-blue/10 p-2 border-b border-term-blue flex items-center gap-2">
-                  <div class="w-3 h-3 bg-term-blue rounded-full animate-pulse"></div>
-                  <h3 class="text-term-blue text-xl uppercase tracking-widest font-bold">Languages</h3>
-                </div>
-                <div class="p-4 flex flex-wrap gap-2">
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-term-blue hover:text-term-blue cursor-help transition-colors">Python</span>
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-term-blue hover:text-term-blue cursor-help transition-colors">Java</span>
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-term-blue hover:text-term-blue cursor-help transition-colors">PHP</span>
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-term-blue hover:text-term-blue cursor-help transition-colors">JavaScript</span>
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-term-blue hover:text-term-blue cursor-help transition-colors">Svelte</span>
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-term-blue hover:text-term-blue cursor-help transition-colors">Bun</span>
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-term-blue hover:text-term-blue cursor-help transition-colors">HTML5</span>
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-term-blue hover:text-term-blue cursor-help transition-colors">CSS3</span>
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-term-blue hover:text-term-blue cursor-help transition-colors">Go</span>
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-term-blue hover:text-term-blue cursor-help transition-colors">Dart</span>
-                </div>
-              </div>
-
-              <!-- Tools (yellow) -->
-              <div class="border border-term-yellow bg-hell-black p-0 h-full">
-                <div class="bg-term-yellow/10 p-2 border-b border-term-yellow flex items-center gap-2">
-                  <div class="w-3 h-3 bg-term-yellow rounded-full animate-pulse"></div>
-                  <h3 class="text-term-yellow text-xl uppercase tracking-widest font-bold">Tools</h3>
-                </div>
-                <div class="p-4 flex flex-wrap gap-2">
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-term-yellow hover:text-term-yellow cursor-help transition-colors">Linux</span>
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-term-yellow hover:text-term-yellow cursor-help transition-colors">Postman</span>
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-term-yellow hover:text-term-yellow cursor-help transition-colors">Ansible</span>
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-term-yellow hover:text-term-yellow cursor-help transition-colors">Docker</span>
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-term-yellow hover:text-term-yellow cursor-help transition-colors">Automation</span>
-                </div>
-              </div>
-
-              <!-- Security (red) -->
-              <div class="border border-ember-red bg-hell-black p-0 h-full">
-                <div class="bg-ember-red/10 p-2 border-b border-ember-red flex items-center gap-2">
-                  <div class="w-3 h-3 bg-ember-red rounded-full animate-pulse"></div>
-                  <h3 class="text-ember-red text-xl uppercase tracking-widest font-bold">Security</h3>
-                </div>
-                <div class="p-4 flex flex-wrap gap-2">
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-ember-red hover:text-ember-red cursor-help transition-colors">AppSec</span>
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-ember-red hover:text-ember-red cursor-help transition-colors">OSINT</span>
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-ember-red hover:text-ember-red cursor-help transition-colors">RF</span>
-                </div>
-              </div>
-
-              <!-- Cloud (purple) -->
-              <div class="border border-term-purple bg-hell-black p-0 h-full">
-                <div class="bg-term-purple/10 p-2 border-b border-term-purple flex items-center gap-2">
-                  <div class="w-3 h-3 bg-term-purple rounded-full animate-pulse"></div>
-                  <h3 class="text-term-purple text-xl uppercase tracking-widest font-bold">Cloud</h3>
-                </div>
-                <div class="p-4 flex flex-wrap gap-2">
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-term-purple hover:text-term-purple cursor-help transition-colors">Google Cloud</span>
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-term-purple hover:text-term-purple cursor-help transition-colors">DigitalOcean</span>
-                  <span class="px-2 py-1 bg-white/5 text-base text-gray-300 border border-white/10 hover:border-term-purple hover:text-term-purple cursor-help transition-colors">AWS</span>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-
-      </main>
-
-      <!-- Footer -->
-      <footer class="py-12 border-t border-white/10 bg-hell-black relative z-10 flex flex-col items-center gap-6 lg:pl-64">
-        <div class="text-lg md:text-xl tracking-[0.2em] text-transparent bg-clip-text bg-gradient-to-r from-term-green via-term-cyan to-term-purple uppercase animate-pulse border-y border-white/10 py-2 px-8">
-          Bound by Code ⛧ Fueled by Chaos ⛧ Forged in Void
-        </div>
-
-        <div class="flex flex-col items-center gap-2 text-gray-500 text-sm font-mono">
-          <p>D371L // SYSTEM_ID: <span class="text-term-yellow">MMXXV</span></p>
-          <p>CONNECTION: <span class="text-term-green">SECURE</span></p>
-        </div>
-
-        <div class="flex justify-center gap-8 text-white/50">
-          <a href="https://github.com/D371L" target="_blank" rel="noopener noreferrer" class="hover:text-term-purple transition-colors cursor-pointer transform hover:scale-110">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4M9 18c-4.51 2-5-2-7-2"/></svg>
-          </a>
-          <a href="https://www.reddit.com/user/D371L/" target="_blank" rel="noopener noreferrer" class="hover:text-ember-red transition-colors cursor-pointer transform hover:scale-110">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
-          </a>
-        </div>
-      </footer>
-
+      </div>
+      <div class="mission">
+        <b>mission.txt</b> · Technology that keeps people safe. Obstacles were the curriculum, pressure was the forge. LLMs run through everything I build: not a tool I use, a layer I engineer with.
+      </div>
     </div>
+  </section>
 
-    <script src="main.js"></script>
-  </body>
+  <!-- RECORD -->
+  <section id="record">
+    <div class="cmdline rv"><span class="host">berson@haifa:~$</span> <span class="typed" data-cmd="ls -la ~/achievements/ --sort=time"></span></div>
+    <div class="out rv">
+      <div class="rec">
+        <span class="yr">2026→</span>
+        <span class="t">M.A. Counter-Terrorism &amp; Intelligence<small>Reichman University · in progress</small></span>
+        <span class="tag">research</span>
+      </div>
+      <div class="rec">
+        <span class="yr">2026</span>
+        <span class="t">B.Sc. Computer Science · summa cum laude<small>University of the People · GPA 3.93</small></span>
+        <span class="tag">degree</span>
+      </div>
+      <div class="rec">
+        <span class="yr">2024</span>
+        <span class="t">Google Cybersecurity Certificate<small>Python · Linux · SQL · SIEM · IDS</small></span>
+        <span class="tag">security</span>
+      </div>
+      <div class="rec">
+        <span class="yr">2021</span>
+        <span class="t">Google IT Support Certificate<small>systems · networking · security foundations</small></span>
+        <span class="tag">systems</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPERATIONS -->
+  <section id="ops">
+    <div class="cmdline rv"><span class="host">berson@haifa:~$</span> <span class="typed" data-cmd='docker ps --filter "status=running"'></span></div>
+    <div class="out rv">
+      <div class="ops">
+        <div class="op">
+          <h3>Vaadbot / Vaadbit <span class="st">RUNNING</span></h3>
+          <p>SaaS platform for <b>residential building management</b>. Long-running production system with real users and real uptime demands. AI-assisted workflows across support and operations.</p>
+        </div>
+        <div class="op">
+          <h3>Identity &amp; Access Platform <span class="st">RUNNING</span></h3>
+          <p>Centralized <b>OAuth 2.0 / OIDC</b> auth service for a multi-product ecosystem. Node.js · TypeScript · Fastify · PostgreSQL · Redis · Kubernetes · Prometheus/Grafana.</p>
+        </div>
+        <div class="op">
+          <h3>LLM-Powered Systems <span class="st">RUNNING</span></h3>
+          <p>Large language models in products and pipelines: <b>API orchestration, agents, retrieval, automation</b>. From prototype to production.</p>
+        </div>
+        <div class="op">
+          <h3>OSINT &amp; Security Research <span class="st">RUNNING</span></h3>
+          <p>Open-source intelligence tooling at the intersection of <b>technology and counter-terrorism</b>. AI-accelerated collection and analysis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARSENAL -->
+  <section id="arsenal">
+    <div class="cmdline rv"><span class="host">berson@haifa:~$</span> <span class="typed" data-cmd="apt list --installed | grep -E 'ai|lang|sec|infra'"></span></div>
+    <div class="out rv">
+      <div class="grp">
+        <div class="gt">AI &amp; LLM ENGINEERING</div>
+        <div class="chips">
+          <span class="chip ai">Claude / Anthropic API</span><span class="chip ai">OpenAI API</span>
+          <span class="chip ai">AI Agents</span><span class="chip ai">Prompt Engineering</span>
+          <span class="chip ai">RAG / Embeddings</span><span class="chip ai">AI-Assisted Development</span>
+        </div>
+      </div>
+      <div class="grp">
+        <div class="gt">LANGUAGES &amp; BACKEND</div>
+        <div class="chips">
+          <span class="chip ai">Python</span><span class="chip ai">TypeScript</span><span class="chip ai">JavaScript</span>
+          <span class="chip ai">Node.js</span><span class="chip ai">Fastify</span><span class="chip ai">Java</span>
+          <span class="chip ai">PHP</span><span class="chip ai">Svelte</span><span class="chip ai">Bun</span>
+        </div>
+      </div>
+      <div class="grp">
+        <div class="gt">DATA &amp; INFRASTRUCTURE</div>
+        <div class="chips">
+          <span class="chip gr">PostgreSQL</span><span class="chip gr">Redis</span><span class="chip gr">Prisma</span>
+          <span class="chip gr">Linux</span><span class="chip gr">Docker</span><span class="chip gr">Kubernetes</span>
+          <span class="chip gr">Nginx</span><span class="chip gr">Ansible</span><span class="chip gr">GitHub Actions</span>
+          <span class="chip gr">Prometheus</span><span class="chip gr">Grafana</span><span class="chip gr">AWS</span>
+          <span class="chip gr">Google Cloud</span><span class="chip gr">DigitalOcean</span>
+        </div>
+      </div>
+      <div class="grp">
+        <div class="gt">SECURITY</div>
+        <div class="chips">
+          <span class="chip sec">OSINT</span><span class="chip sec">AppSec</span><span class="chip sec">SIEM / IDS</span>
+          <span class="chip sec">Network Security</span><span class="chip sec">RF / Wireless</span><span class="chip sec">Digital Forensics</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONNECT -->
+  <section id="connect">
+    <div class="cmdline rv"><span class="host">berson@haifa:~$</span> <span class="typed" data-cmd="ssh guest@berson --open-channel"></span></div>
+    <div class="out rv">
+      <div class="resp">Connection established. Choose protocol:</div>
+      <div class="links">
+        <a class="btn p" href="https://www.linkedin.com/in/vladimir-berson/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn g" href="https://github.com/D371L" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn p" href="mailto:D371L@pm.me">Proton Mail</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="rv">
+    <div><span class="up">$ uptime</span> · 10+ years up · load average: high, sustainable, intentional</div>
+    <div class="tag">BUILT UNDER PRESSURE <i>⚡</i> AMPLIFIED BY AI <i>⚡</i> SECURED BY DESIGN</div>
+    <div class="cp">© 2026 Vladimir Berson</div>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* theme toggle */
+  var root = document.documentElement;
+  var btn = document.getElementById('themer');
+  var meta = document.getElementById('metaTheme');
+  function paint(){
+    var t = root.getAttribute('data-theme');
+    btn.textContent = t==='dark' ? '☾ dark' : '☀ light';
+    meta.setAttribute('content', t==='dark' ? '#0a0a14' : '#F5F3FB');
+  }
+  btn.addEventListener('click', function(){
+    var t = root.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', t);
+    try{ localStorage.setItem('theme', t); }catch(e){}
+    paint();
+  });
+  paint();
+
+  /* hero role rotator */
+  var lines = [
+    'Full-Spectrum Engineer · AI · Security · Cloud',
+    'Self-taught. Forged under pressure.',
+    'AI as force multiplier. Security first.',
+    'Threat Intelligence | OSINT | LLM Systems',
+    'Ship with intent.'
+  ];
+  var rot = document.getElementById('rot');
+  if(reduce){ rot.textContent = lines[0]; }
+  else{
+    var li=0, ci=0, del=false;
+    (function tick(){
+      var s = lines[li];
+      if(!del){
+        ci++; rot.textContent = s.slice(0,ci);
+        if(ci===s.length){ del=true; return setTimeout(tick,1700); }
+        return setTimeout(tick, 34);
+      }
+      ci--; rot.textContent = s.slice(0,ci);
+      if(ci===0){ del=false; li=(li+1)%lines.length; return setTimeout(tick,300); }
+      setTimeout(tick, 14);
+    })();
+  }
+
+  /* typed section commands + reveal */
+  function typeCmd(el){
+    var cmd = el.getAttribute('data-cmd');
+    if(reduce){ el.textContent = cmd; return; }
+    var i=0;
+    (function t(){
+      i++; el.textContent = cmd.slice(0,i);
+      if(i<cmd.length) setTimeout(t, 22);
+    })();
+  }
+  var seen = new WeakSet();
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      e.target.classList.add('on');
+      var typed = e.target.querySelector('.typed');
+      if(typed && !seen.has(typed)){ seen.add(typed); typeCmd(typed); }
+      io.unobserve(e.target);
+    });
+  },{threshold:.15});
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
 </html>
