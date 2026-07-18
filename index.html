@@ -197,7 +197,54 @@
   footer .tag i{color:var(--phosphor);font-style:normal}
   footer .cp{margin-top:14px;font-size:11.5px;opacity:.8}
 
+  /* career log */
+  .job{display:grid;grid-template-columns:118px 1fr;gap:14px;
+    padding:14px 4px;border-bottom:1px solid var(--line)}
+  .job:last-child{border-bottom:none}
+  .job .per{color:var(--phosphor);font-size:12.5px;line-height:1.9}
+  .job .role{color:var(--text);font-weight:700;font-size:14.5px}
+  .job .co{color:var(--proton-soft);font-size:13px;margin-top:1px}
+  .job .co em{color:var(--dim);font-style:normal}
+  .job .d{color:var(--dim);font-size:13px;margin-top:6px;line-height:1.6}
+  .job .sub{margin-top:8px;padding-left:12px;border-left:1px dashed var(--line)}
+  .job .sub .srole{color:var(--text);font-size:13px}
+  .job .sub .srole em{color:var(--dim);font-style:normal;font-size:12px}
+
   a:focus-visible,.btn:focus-visible,.themer:focus-visible{outline:2px solid var(--phosphor);outline-offset:3px}
+
+  /* print = resume mode */
+  @media print{
+    :root,[data-theme="light"],[data-theme="dark"]{
+      --void:#fff;--panel:#fff;--panel2:#fff;--line:#c9c9c9;
+      --proton:#3a2a99;--proton-soft:#3a2a99;--phosphor:#1a6b2d;--blood:#8a2020;
+      --text:#111;--dim:#444;--name-glow:none;--card-shadow:none;--bar-bg:#fff;
+    }
+    body{font-size:12px}
+    .glow,.scan,.themer,.caret,.dot{display:none!important}
+    .titlebar{position:static;border-bottom:2px solid #111;margin:0;padding:0 0 8px}
+    .wrap{max-width:100%;padding:0 6mm}
+    .hero{padding:18px 0 14px}
+    .name{font-size:30px;text-shadow:none;margin:8px 0 6px}
+    .rotator{display:none}
+    section{padding:14px 0 0;break-inside:avoid}
+    .out{border:none;box-shadow:none;padding:4px 0;background:#fff}
+    .cmdline{margin-bottom:6px;font-weight:700;color:#111}
+    .cmdline .host{display:none}
+    .rv{opacity:1!important;transform:none!important}
+    .ops{grid-template-columns:1fr 1fr;gap:8px}
+    .op{padding:8px;border-color:#ddd}
+    .op:hover{transform:none}
+    .chips{gap:5px}
+    .chip{padding:2px 8px;border-color:#ccc;font-size:10.5px}
+    .btn{border:none;padding:0;min-height:0;background:none;color:#111;box-shadow:none}
+    .btn::after{content:" · " attr(href);color:#444;font-weight:400}
+    .links{gap:4px;flex-direction:column;align-items:flex-start}
+    .resp{display:none}
+    footer .tag,footer .up{display:none}
+    footer{margin-top:20px}
+    .job{padding:8px 0}
+    .rec{padding:7px 0}
+  }
 
   @media(max-width:720px){
     body{font-size:14.5px}
@@ -214,6 +261,8 @@
     .links{gap:10px}
     .btn{flex:1 1 40%;min-width:130px}
     .titlebar .path{font-size:12px}
+    .job{grid-template-columns:1fr;gap:4px}
+    .job .per{line-height:1.4}
   }
   @media(prefers-reduced-motion:reduce){
     .rv{opacity:1;transform:none;transition:none}
@@ -242,7 +291,8 @@
   <div class="titlebar">
     <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
     <span class="path"><b>berson@haifa</b>: ~/about</span>
-    <button class="themer" id="themer" aria-label="Switch color theme">☾ dark</button>
+    <button class="themer" id="printer" aria-label="Print resume" style="margin-left:auto">⎙ cv</button>
+    <button class="themer" id="themer" aria-label="Switch color theme" style="margin-left:8px">☾ dark</button>
   </div>
 
   <!-- HERO -->
@@ -273,6 +323,7 @@
           <div class="row"><span class="k">Degree</span><span class="v">B.Sc. Computer Science · summa cum laude</span></div>
           <div class="row"><span class="k">Research</span><span class="v">M.A. Counter-Terrorism &amp; Intelligence</span></div>
           <div class="row"><span class="k">Focus</span><span class="v">Threat Intelligence · OSINT</span></div>
+          <div class="row"><span class="k">Locale</span><span class="v">ru_RU <em style="color:var(--dim);font-style:normal">(native)</em> · he_IL · en_US</span></div>
           <div class="row"><span class="k">Shell</span><span class="v gr">self-taught, no shortcuts</span></div>
         </div>
       </div>
@@ -297,6 +348,16 @@
         <span class="tag">degree</span>
       </div>
       <div class="rec">
+        <span class="yr">2026</span>
+        <span class="t">Global Studies: International Relations &amp; World Politics<small>FutureLearn</small></span>
+        <span class="tag">geopolitics</span>
+      </div>
+      <div class="rec">
+        <span class="yr">2025</span>
+        <span class="t">First Aid Course<small>Israeli Friends of Magen David Adom (IFMDA)</small></span>
+        <span class="tag">response</span>
+      </div>
+      <div class="rec">
         <span class="yr">2024</span>
         <span class="t">Google Cybersecurity Certificate<small>Python · Linux · SQL · SIEM · IDS</small></span>
         <span class="tag">security</span>
@@ -305,6 +366,147 @@
         <span class="yr">2021</span>
         <span class="t">Google IT Support Certificate<small>systems · networking · security foundations</small></span>
         <span class="tag">systems</span>
+      </div>
+      <div class="rec">
+        <span class="yr">2010</span>
+        <span class="t">PADI Divemaster · CPR &amp; AED<small>PADI · Emergency First Response</small></span>
+        <span class="tag">field</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAREER -->
+  <section id="career">
+    <div class="cmdline rv"><span class="host">berson@haifa:~$</span> <span class="typed" data-cmd="journalctl -u career --since 2007"></span></div>
+    <div class="out rv">
+      <div class="job">
+        <span class="per">2022 → now</span>
+        <div>
+          <div class="role">Founder &amp; CEO</div>
+          <div class="co">HellSec.dev <em>· formerly Puma Labs · Israel · remote</em></div>
+          <div class="d">Founded as Puma Labs in 2022, rebranded to HellSec.dev in 2026. Security-focused product R&amp;D for startups and entrepreneurs. Leading engineers and security specialists to deliver secure, scalable, market-ready solutions. Cloud security, OSINT, AppSec.</div>
+        </div>
+      </div>
+      <div class="job">
+        <span class="per">2022 → now</span>
+        <div>
+          <div class="role">Chief Information Officer</div>
+          <div class="co">Billclick IL <em>· contract · Israel</em></div>
+          <div class="d">Technology leadership for a product portfolio including <b>Vaadbot / Vaadbit</b> (SaaS for residential building management) and <b>AlexyAI</b>. Architecture, cloud infrastructure, and engineering direction across all products.</div>
+        </div>
+      </div>
+      <div class="job">
+        <span class="per">2024 → 2026</span>
+        <div>
+          <div class="role">Safety Instructor / Youth Center Director</div>
+          <div class="co">The Haifa Association for Immigrants Absorption <em>· Haifa</em></div>
+          <div class="d">With Israel's National Authority for Community Safety: school programs for children and teens on violence prevention, drug awareness, personal safety, and community responsibility.</div>
+          <div class="sub">
+            <div class="srole">Safety Instructor <em>· Sep 2025 → Jul 2026</em></div>
+            <div class="srole">Youth Center Director <em>· Jun 2025 → Aug 2025</em></div>
+            <div class="srole">Safety Instructor <em>· Oct 2024 → Jun 2025</em></div>
+          </div>
+        </div>
+      </div>
+      <div class="job">
+        <span class="per">2024</span>
+        <div>
+          <div class="role">Political Advisor</div>
+          <div class="co">Knesset <em>· Jerusalem · Apr → Jun 2024</em></div>
+          <div class="d">Parliamentary advisory: political strategy, policy work, legislative environment.</div>
+        </div>
+      </div>
+      <div class="job">
+        <span class="per">2019 → 2021</span>
+        <div>
+          <div class="role">Founder</div>
+          <div class="co">Core Alliance <em>· Haifa</em></div>
+          <div class="d">Residential and commercial building management services, including maintenance and utility fee collection.</div>
+        </div>
+      </div>
+      <div class="job">
+        <span class="per">2017 → 2019</span>
+        <div>
+          <div class="role">Regional Manager</div>
+          <div class="co">Yam Chenyonim <em>· Haifa District</em></div>
+        </div>
+      </div>
+      <div class="job">
+        <span class="per">2016 → 2017</span>
+        <div>
+          <div class="role">Quality Assurance Specialist</div>
+          <div class="co">ColorChip <em>· Yokneam Illit</em></div>
+        </div>
+      </div>
+      <div class="job">
+        <span class="per">2015 → 2016</span>
+        <div>
+          <div class="role">Warehouse Manager</div>
+          <div class="co">Keshet Teamim <em>· Nesher</em></div>
+        </div>
+      </div>
+      <div class="job">
+        <span class="per">2009 → 2014</span>
+        <div>
+          <div class="role">Project Manager</div>
+          <div class="co">Vip Wiset Tour Ltd <em>· Phuket, Thailand</em></div>
+          <div class="d">VIP travel services: private yachts, private jungle trips, airport fast-track, personal security.</div>
+        </div>
+      </div>
+      <div class="job">
+        <span class="per">2009 → 2012</span>
+        <div>
+          <div class="role">Co-Founder</div>
+          <div class="co">Royal Andaman Cruise Ltd <em>· Phuket, Thailand</em></div>
+          <div class="d">Day trips from Phuket to Phi Phi Islands.</div>
+        </div>
+      </div>
+      <div class="job">
+        <span class="per">2007 → 2009</span>
+        <div>
+          <div class="role">Co-Founder</div>
+          <div class="co">Imperial Markets Ltd <em>· Riga, Latvia</em></div>
+          <div class="d">Forex forecasting SaaS platform. Completed investment management training as part of building the product.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOLUNTEERING -->
+  <section id="community">
+    <div class="cmdline rv"><span class="host">berson@haifa:~$</span> <span class="typed" data-cmd="systemctl status community.service"></span></div>
+    <div class="out rv">
+      <div class="job">
+        <span class="per">2024 → now</span>
+        <div>
+          <div class="role">Municipal Rescue Unit</div>
+          <div class="co">Haifa Municipality <em>· disaster &amp; humanitarian relief</em></div>
+          <div class="d">Professional emergency force with immediate availability: locating and rescuing victims and trapped people from ruins in disaster situations. Certified: Rescue 02, First Aid Providers Course.</div>
+        </div>
+      </div>
+      <div class="job">
+        <span class="per">2024 → 2026</span>
+        <div>
+          <div class="role">Cleanliness Trustee</div>
+          <div class="co">Ministry of Environmental Protection <em>· environment</em></div>
+          <div class="d">Volunteer program keeping the city cleaner and more sustainable: reporting pollution and potential violations.</div>
+        </div>
+      </div>
+      <div class="job">
+        <span class="per">2022 → 2025</span>
+        <div>
+          <div class="role">Chief Information Officer</div>
+          <div class="co">Young People For Haifa (YPFH) <em>· community</em></div>
+          <div class="d">Empowering young residents and new immigrants to take an active role in shaping the city's future through educational programs and civic initiatives.</div>
+        </div>
+      </div>
+      <div class="job">
+        <span class="per">2023 → 2024</span>
+        <div>
+          <div class="role">Chief Technology Officer</div>
+          <div class="co">"Ani Hai Po" <em>· civic / politics</em></div>
+          <div class="d">Technological integration and automation of critical processes within the pre-election headquarters.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -323,8 +525,8 @@
           <p>Centralized <b>OAuth 2.0 / OIDC</b> auth service for a multi-product ecosystem. Node.js · TypeScript · Fastify · PostgreSQL · Redis · Kubernetes · Prometheus/Grafana.</p>
         </div>
         <div class="op">
-          <h3>LLM-Powered Systems <span class="st">RUNNING</span></h3>
-          <p>Large language models in products and pipelines: <b>API orchestration, agents, retrieval, automation</b>. From prototype to production.</p>
+          <h3>AlexyAI &amp; LLM Systems <span class="st">RUNNING</span></h3>
+          <p><b>AlexyAI</b>: an AI assistant that makes managing Vaadbot and Vaadbit effortless for users. Plus LLM pipelines across products: <b>API orchestration, agents, retrieval, automation</b>.</p>
         </div>
         <div class="op">
           <h3>OSINT &amp; Security Research <span class="st">RUNNING</span></h3>
@@ -415,6 +617,18 @@
     paint();
   });
   paint();
+
+  /* print = resume */
+  function revealAll(){
+    document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('on'); });
+    document.querySelectorAll('.typed').forEach(function(el){
+      el.textContent = el.getAttribute('data-cmd');
+    });
+  }
+  document.getElementById('printer').addEventListener('click', function(){
+    revealAll(); window.print();
+  });
+  window.addEventListener('beforeprint', revealAll);
 
   /* hero role rotator */
   var lines = [
